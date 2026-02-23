@@ -1,6 +1,6 @@
 /*
 =========================================================================
-   EMBER & OAK CAFE — Demo Build for WebOps Studio
+   EMBER & OAK CAFE — Main Stylesheet
    Purpose: Warm, neighborhood cafe site. Clean, human, scalable.
    Architecture: Vanilla CSS, Flex/Grid layouts, CSS Variables.
 =========================================================================
@@ -9,17 +9,17 @@
 /* ── 1. DESIGN TOKENS ───────────────────────────────────────────────── */
 :root {
   /* Colors - Warm, Espresso, Oak & Cream */
-  --color-bg: #FCFAF8;           /* Soft Cream */
+  --color-bg: #FCFAF8;           /* Soft Cream - main page background */
   --color-surface: #FFFFFF;      /* Pure white for crisp cards */
-  --color-surface-soft: #F4EFEA; /* Warm Oak Tan for soft cards */
+  --color-surface-soft: #F4EFEA; /* Warm Oak Tan for soft layout boxes */
   
-  --color-text-main: #2A2624;    /* Deep Espresso Brown */
-  --color-text-muted: #5E5652;   /* Lighter Charcoal/Brown */
+  --color-text-main: #2A2624;    /* Deep Espresso Brown - primary text */
+  --color-text-muted: #5E5652;   /* Lighter Charcoal/Brown - secondary text */
   
-  --color-accent: #D45D3B;       /* Ember Orange */
+  --color-accent: #D45D3B;       /* Ember Orange - buttons and links */
   --color-accent-hover: #B84728; 
   
-  --color-border: #E8E3DF;       /* Soft tan border */
+  --color-border: #E8E3DF;       /* Soft tan border for cards and dividers */
   --color-overlay: rgba(42, 38, 36, 0.45); /* Dark brown tint for hero images */
 
   /* Typography */
@@ -34,7 +34,7 @@
 
   /* UI Elements */
   --radius-sm: 8px;
-  --radius-md: 16px;
+  --radius-md: 16px;             /* Slightly rounder for that friendly feel */
   --radius-pill: 100px;
   --shadow-soft: 0 12px 36px rgba(42, 38, 36, 0.06);
   --shadow-hover: 0 16px 48px rgba(42, 38, 36, 0.12);
@@ -79,7 +79,7 @@ a:hover {
 }
 
 ul { list-style: none; }
-button, input, textarea { font: inherit; }
+button, input, textarea, select { font: inherit; }
 
 /* Accessibility */
 .sr-only {
@@ -117,6 +117,7 @@ h4 { font-size: 1.25rem; }
 p { margin-bottom: 16px; }
 p.muted { color: var(--color-text-muted); }
 
+/* The small orange label above section headings */
 .section-label {
   display: inline-block;
   font-family: var(--font-mono);
@@ -175,6 +176,7 @@ p.muted { color: var(--color-text-muted); }
   .cards-3 { grid-template-columns: repeat(3, 1fr); }
 }
 
+/* Two column layout used for text on one side, image on the other */
 .two-col {
   display: grid;
   grid-template-columns: 1fr;
@@ -189,6 +191,10 @@ p.muted { color: var(--color-text-muted); }
   display: flex;
   justify-content: center;
   margin-top: 48px;
+}
+
+.text-center {
+  text-align: center;
 }
 
 /* ── 5. BUTTONS ─────────────────────────────────────────────────────── */
@@ -240,6 +246,7 @@ p.muted { color: var(--color-text-muted); }
   z-index: 100;
   padding: 24px 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  transition: background-color 0.3s ease, padding 0.3s ease, box-shadow 0.3s ease;
 }
 
 /* JS will add .scrolled class for sticky header */
@@ -260,8 +267,9 @@ p.muted { color: var(--color-text-muted); }
 .brand-link {
   display: flex;
   flex-direction: column;
-  color: var(--color-surface);
+  color: var(--color-surface); /* White text over hero image */
 }
+/* When scrolled, the background turns cream, so text must turn brown */
 .site-header.scrolled .brand-link { color: var(--color-text-main); }
 
 .brand-name {
@@ -281,49 +289,26 @@ p.muted { color: var(--color-text-muted); }
 
 .main-nav { display: flex; align-items: center; }
 
-.nav-links {
-  display: none;
-  gap: 32px;
-  margin-right: 32px;
-}
+.nav-cta { display: none; }
 
-.nav-links a {
-  font-size: 0.95rem;
-  font-weight: 500;
-  color: rgba(255, 255, 255, 0.8);
-}
-.nav-links a:hover, .nav-links a.active { color: var(--color-surface); }
-
-.site-header.scrolled .nav-links a { color: var(--color-text-muted); }
-.site-header.scrolled .nav-links a:hover, 
-.site-header.scrolled .nav-links a.active { color: var(--color-text-main); }
-
-.nav-cta {
-  display: none;
-}
-
-@media (min-width: 900px) {
-  .nav-links { display: flex; }
-  .nav-cta { display: inline-flex; }
-  .nav-toggle { display: none; }
-}
-
-/* Hamburger */
+/* Hamburger Button */
 .nav-toggle {
   background: none;
   border: none;
   cursor: pointer;
   padding: 8px;
-  z-index: 1001;
+  z-index: 1001; /* Must stay above the mobile menu */
 }
+
 .hamburger {
   display: block;
   width: 24px; height: 2px;
-  background: var(--color-surface);
+  background: var(--color-surface); /* White line */
   position: relative;
   transition: background var(--transition);
 }
-.site-header.scrolled .hamburger { background: var(--color-text-main); }
+.site-header.scrolled .hamburger { background: var(--color-text-main); } /* Brown line when scrolled */
+
 .hamburger::before, .hamburger::after {
   content: '';
   position: absolute;
@@ -333,13 +318,79 @@ p.muted { color: var(--color-text-muted); }
 }
 .site-header.scrolled .hamburger::before,
 .site-header.scrolled .hamburger::after { background: var(--color-text-main); }
+
 .hamburger::before { top: -6px; left: 0; }
 .hamburger::after { top: 6px; left: 0; }
 
-/* Mobile Menu Active State */
-.nav-toggle[aria-expanded="true"] .hamburger { background: transparent; }
-.nav-toggle[aria-expanded="true"] .hamburger::before { transform: rotate(45deg) translate(4px, 4px); }
-.nav-toggle[aria-expanded="true"] .hamburger::after { transform: rotate(-45deg) translate(4px, -4px); }
+/* Mobile Menu Active State (Hamburger turns into an X) */
+.nav-toggle[aria-expanded="true"] .hamburger { background: transparent !important; }
+.nav-toggle[aria-expanded="true"] .hamburger::before { 
+  transform: rotate(45deg) translate(4px, 4px); 
+  background: var(--color-text-main); /* Force dark 'X' so it's visible on menu background */
+}
+.nav-toggle[aria-expanded="true"] .hamburger::after { 
+  transform: rotate(-45deg) translate(4px, -4px); 
+  background: var(--color-text-main); /* Force dark 'X' */
+}
+
+/* MOBILE MENU OVERLAY */
+@media (max-width: 899px) {
+  .nav-links {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 0; 
+    left: 0; 
+    right: 0; 
+    bottom: 0;
+    height: 100vh;
+    background-color: var(--color-bg); /* Cream background for the menu */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 32px;
+    margin: 0;
+    padding: 0;
+    z-index: 1000; /* Behind the hamburger button (1001), above everything else */
+  }
+
+  /* Added by JS when hamburger is clicked */
+  .nav-links.active {
+    display: flex;
+  }
+
+  .nav-links a {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--color-text-main); /* Dark brown links */
+  }
+  
+  .nav-links a:hover, .nav-links a.active {
+    color: var(--color-accent); /* Orange on hover/active */
+  }
+}
+
+/* DESKTOP NAV */
+@media (min-width: 900px) {
+  .nav-links { 
+    display: flex; 
+    gap: 32px;
+    margin-right: 32px;
+  }
+  .nav-cta { display: inline-flex; }
+  .nav-toggle { display: none; }
+
+  .nav-links a {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.8);
+  }
+  .nav-links a:hover, .nav-links a.active { color: var(--color-surface); }
+
+  /* Desktop links turn dark when header is sticky */
+  .site-header.scrolled .nav-links a { color: var(--color-text-muted); }
+  .site-header.scrolled .nav-links a:hover, 
+  .site-header.scrolled .nav-links a.active { color: var(--color-text-main); }
+}
 
 /* ── 7. HERO SYSTEM ─────────────────────────────────────────────────── */
 .page-hero {
@@ -449,11 +500,13 @@ p.muted { color: var(--color-text-muted); }
   overflow: hidden;
 }
 
+/* The warm tan background box */
 .card.soft {
   background: var(--color-surface-soft);
   padding: 48px;
 }
 
+/* Images inside grid cards */
 .card.media img {
   width: 100%;
   height: 100%;
@@ -614,7 +667,54 @@ p.muted { color: var(--color-text-muted); }
   letter-spacing: 0.05em;
 }
 
-/* ── 10. CTA & FORMS ────────────────────────────────────────────────── */
+/* ── 10. FORMS (Contact Page) ───────────────────────────────────────── */
+.form-group { 
+  margin-bottom: 24px; 
+}
+
+.form-label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  color: var(--color-text-muted);
+}
+
+.form-control {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface);
+  color: var(--color-text-main);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  transition: border-color var(--transition), box-shadow var(--transition);
+  appearance: none; /* Removes default iOS/Safari styling on dropdowns */
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(212, 93, 59, 0.15);
+}
+
+textarea.form-control { 
+  resize: vertical; 
+  min-height: 120px; 
+}
+
+select.form-control {
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%232A2624' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  padding-right: 40px;
+}
+
+/* ── 11. CTA & NEWSLETTER ───────────────────────────────────────────── */
 .cta-strip {
   background: var(--color-text-main);
   color: var(--color-surface);
@@ -644,7 +744,7 @@ p.muted { color: var(--color-text-muted); }
   border-color: var(--color-accent);
 }
 
-/* ── 11. FOOTER ─────────────────────────────────────────────────────── */
+/* ── 12. FOOTER ─────────────────────────────────────────────────────── */
 .site-footer {
   background: var(--color-surface);
   padding: 80px 0 32px;
@@ -692,7 +792,7 @@ p.muted { color: var(--color-text-muted); }
   color: var(--color-text-muted);
 }
 
-/* ── 12. UTILITIES & ANIMATIONS ─────────────────────────────────────── */
+/* ── 13. UTILITIES & ANIMATIONS ─────────────────────────────────────── */
 .back-to-top {
   position: fixed;
   bottom: 32px; right: 32px;
@@ -716,4 +816,4 @@ p.muted { color: var(--color-text-muted); }
 .back-to-top:hover {
   background: var(--color-accent);
   transform: translateY(-4px);
-  }
+}
