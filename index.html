@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Ember &amp; Oak Cafe | Crafted Coffee. Shared Moments.</title>
+  <meta name="description" content="Ember & Oak Cafe is a neighborhood coffee shop serving crafted drinks, scratch made pastries, and warm community nights. View the menu, hours, and upcoming events." />
+
+  <link rel="icon" href="images/favicon.png" type="image/png" />
+  <link rel="stylesheet" href="styles/styles.css" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500;600&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet" />
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- HEADER -->
+  <header id="site-header" class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <a class="brand-link" href="index.html" aria-label="Ember and Oak Cafe home">
+          <span class="brand-name">Ember <span class="brand-amp">&amp;</span> Oak</span>
+          <span class="brand-sub">Cafe</span>
+        </a>
+      </div>
+
+      <nav class="main-nav" aria-label="Primary navigation">
+        <button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="primary-nav">
+          <span class="hamburger" aria-hidden="true"></span>
+        </button>
+
+        <ul class="nav-links" id="primary-nav">
+          <li><a class="active" href="index.html">Home</a></li>
+          <li><a href="menu.html">Menu</a></li>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="catering.html">Catering</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+
+        <a class="btn btn-primary btn-sm nav-cta" href="menu.html">View Menu</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- HERO -->
+    <section class="page-hero hero-home">
+      <div class="hero-bg" aria-hidden="true">
+        <img class="hero-bg-img" src="images/hero-home.jpg" alt="" loading="eager" />
+        <div class="hero-bg-overlay"></div>
+      </div>
+
+      <div class="container page-hero__inner">
+        <p class="page-hero__eyebrow">
+          <span class="page-hero__eyebrow-line"></span>
+          Neighborhood Coffee Shop
+        </p>
+
+        <h1 class="page-hero__title">
+          Crafted Coffee.<br />
+          <span>Shared Moments.</span>
+        </h1>
+
+        <p class="page-hero__sub">
+          Small batch roasted beans, scratch made pastries, and a place to slow down.
+          Come as you are. Stay awhile.
+        </p>
+
+        <div class="hero-ctas">
+          <a class="btn btn-primary" href="menu.html">View Menu</a>
+          <a class="btn btn-ghost" href="contact.html#location">Visit Us</a>
+        </div>
+
+        <div class="hero-proof-strip" aria-label="Cafe highlights">
+          <span class="proof-pill"><span class="proof-dot" aria-hidden="true"></span>Scratch made pastries</span>
+          <span class="proof-pill"><span class="proof-dot" aria-hidden="true"></span>Seasonal specials</span>
+          <span class="proof-pill"><span class="proof-dot" aria-hidden="true"></span>Community nights</span>
+          <span class="proof-pill"><span class="proof-dot" aria-hidden="true"></span>Warm, quiet space</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- INTRO -->
+    <section class="section intro-section">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="section-label">Welcome</span>
+            <h2>A neighborhood spot built to feel familiar</h2>
+          </div>
+          <a class="btn btn-ghost btn-sm" href="about.html">Read Our Story</a>
+        </div>
+
+        <div class="two-col">
+          <div class="card soft">
+            <h3>Local, warm, and steady</h3>
+            <p>
+              Ember &amp; Oak is a simple kind of place. Good coffee, honest food, and
+              a room full of people who keep coming back. We roast with care, bake daily,
+              and keep the vibe calm.
+            </p>
+            <p>
+              Whether you are grabbing a quick espresso or settling in with a book, you
+              have a seat here.
+            </p>
+          </div>
+
+          <div class="card media">
+            <img src="images/food-1.jpg" alt="Fresh pastry and coffee on a wooden table" loading="lazy" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- FEATURED ITEMS -->
+    <section class="section featured-section">
+      <div class="container">
+        <span class="section-label">Featured</span>
+        <h2>Regular favorites</h2>
+
+        <div class="grid cards-3">
+          <article class="card item-card">
+            <img src="images/drink-1.jpg" alt="Latte with soft foam art" loading="lazy" />
+            <div class="card-body">
+              <h3>Honey Oat Latte</h3>
+              <p>Warm espresso, oat milk, and a touch of local honey.</p>
+              <div class="card-actions">
+                <a class="btn btn-ghost btn-sm" href="menu.html#coffee">See on Menu</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="card item-card">
+            <img src="images/drink-2.jpg" alt="Iced coffee in a glass with ice" loading="lazy" onerror="this.style.display='none';" />
+            <div class="card-body">
+              <h3>Cold Brew</h3>
+              <p>Smooth, low-acid, steeped slow for a clean finish.</p>
+              <div class="card-actions">
+                <a class="btn btn-ghost btn-sm" href="menu.html#coffee">See on Menu</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="card item-card">
+            <img src="images/food-2.jpg" alt="Fresh baked cinnamon roll on a plate" loading="lazy" onerror="this.style.display='none';" />
+            <div class="card-body">
+              <h3>Cinnamon Roll</h3>
+              <p>Soft, baked daily, with a light vanilla glaze.</p>
+              <div class="card-actions">
+                <a class="btn btn-ghost btn-sm" href="menu.html#pastries">See on Menu</a>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <div class="center-row">
+          <a class="btn btn-primary" href="menu.html">View Full Menu</a>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- COMMUNITY -->
+    <section class="section community-section">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="section-label">Community</span>
+            <h2>More than coffee</h2>
+          </div>
+          <a class="btn btn-ghost btn-sm" href="events.html">See Events</a>
+        </div>
+
+        <div class="two-col">
+          <div class="card soft">
+            <h3>Come for the quiet. Stay for the people.</h3>
+            <p>
+              We host simple nights that bring neighbors together. Acoustic sets, open mic,
+              board games, and seasonal pop ups. No pressure. Just a good room with good energy.
+            </p>
+
+            <ul class="bullets">
+              <li>Acoustic Fridays</li>
+              <li>Open Mic Night</li>
+              <li>Board Game Sundays</li>
+            </ul>
+          </div>
+
+          <div class="grid cards-2 tight">
+            <article class="card event-card">
+              <div class="event-meta">
+                <span class="event-date">Fri 7:00 PM</span>
+                <span class="event-tag">Live</span>
+              </div>
+              <h3>Acoustic Fridays</h3>
+              <p>Local musicians, low volume, warm lights.</p>
+            </article>
+
+            <article class="card event-card">
+              <div class="event-meta">
+                <span class="event-date">Thu 6:30 PM</span>
+                <span class="event-tag">Open Mic</span>
+              </div>
+              <h3>Open Mic Night</h3>
+              <p>Poetry, music, and stories. All welcome.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- TESTIMONIALS -->
+    <section class="section testimonials-section">
+      <div class="container">
+        <span class="section-label">Words</span>
+        <h2>What regulars say</h2>
+
+        <div class="grid cards-3">
+          <figure class="card quote-card">
+            <blockquote>
+              The kind of place you can breathe. The coffee is solid and the staff remembers your name.
+            </blockquote>
+            <figcaption>Jordan M.</figcaption>
+          </figure>
+
+          <figure class="card quote-card">
+            <blockquote>
+              Best cold brew in town. Also their pastries disappear fast, so get here early.
+            </blockquote>
+            <figcaption>Sam R.</figcaption>
+          </figure>
+
+          <figure class="card quote-card">
+            <blockquote>
+              Quiet enough to work, friendly enough to stay. Feels like a neighborhood living room.
+            </blockquote>
+            <figcaption>Taylor K.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- LOCATION AND HOURS -->
+    <section class="section location-section" id="location">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="section-label">Visit</span>
+            <h2>Find us</h2>
+          </div>
+          <a class="btn btn-ghost btn-sm" href="contact.html">Contact</a>
+        </div>
+
+        <div class="two-col">
+          <div class="card soft">
+            <h3>Ember &amp; Oak Cafe</h3>
+            <p class="muted">
+              123 Oak Street, Your City, ST 00000<br />
+              (555) 123-4567
+            </p>
+
+            <div class="hours">
+              <div class="hours-row"><span>Mon</span><span>6:30 AM to 5:00 PM</span></div>
+              <div class="hours-row"><span>Tue</span><span>6:30 AM to 5:00 PM</span></div>
+              <div class="hours-row"><span>Wed</span><span>6:30 AM to 5:00 PM</span></div>
+              <div class="hours-row"><span>Thu</span><span>6:30 AM to 6:00 PM</span></div>
+              <div class="hours-row"><span>Fri</span><span>6:30 AM to 7:00 PM</span></div>
+              <div class="hours-row"><span>Sat</span><span>7:00 AM to 7:00 PM</span></div>
+              <div class="hours-row"><span>Sun</span><span>8:00 AM to 3:00 PM</span></div>
+            </div>
+
+            <div class="card-actions">
+              <a class="btn btn-primary" href="contact.html#location">Get Directions</a>
+              <a class="btn btn-ghost" href="menu.html">See Menu</a>
+            </div>
+          </div>
+
+          <div class="card map-card">
+            <iframe
+              title="Map to Ember and Oak Cafe"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              src="https://www.google.com/maps?q=Minneapolis%20MN&output=embed">
+            </iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NEWSLETTER -->
+    <section class="cta-strip">
+      <div class="container">
+        <span class="section-label">Stay in the loop</span>
+        <h2>Get seasonal specials and event updates</h2>
+        <p class="muted">
+          One email now and then. No spam. Just good stuff.
+        </p>
+
+        <form class="newsletter" action="#" method="post">
+          <label class="sr-only" for="newsletter-email">Email</label>
+          <input id="newsletter-email" name="email" type="email" placeholder="Your email" autocomplete="email" required />
+          <button class="btn btn-primary" type="submit">Sign Up</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="brand">
+            <a class="brand-link" href="index.html" aria-label="Ember and Oak Cafe home">
+              <span class="brand-name">Ember <span class="brand-amp">&amp;</span> Oak</span>
+              <span class="brand-sub">Cafe</span>
+            </a>
+          </div>
+          <p class="muted">
+            Crafted coffee, honest food, and a warm space for the neighborhood.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Pages</h4>
+          <ul>
+            <li><a href="menu.html">Menu</a></li>
+            <li><a href="events.html">Events</a></li>
+            <li><a href="catering.html">Catering</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Visit</h4>
+          <ul class="footer-list">
+            <li>123 Oak Street, Your City</li>
+            <li><a href="tel:+15551234567">(555) 123-4567</a></li>
+            <li><a href="mailto:hello@emberandoak.cafe">hello@emberandoak.cafe</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; <span id="year">2026</span> Ember &amp; Oak Cafe. All rights reserved.</p>
+        <a class="btn btn-ghost btn-sm" href="#main">Back to top</a>
+      </div>
+    </div>
+  </footer>
+
+  <button class="back-to-top" type="button" aria-label="Back to top">↑</button>
+
+  <script src="js/scripts.js"></script>
+  <script>
+    (function () {
+      var y = document.getElementById('year');
+      if (y) y.textContent = new Date().getFullYear();
+    })();
+  </script>
+</body>
+                  </html>
