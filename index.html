@@ -1,130 +1,493 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- ============================================================
+    EMBER & OAK CAFE — index.html
+    Page: Homepage
+    Description: Main landing page. Contains hero, featured items,
+                 upcoming events preview, testimonial, and newsletter CTA.
+    Stylesheet: styles.css (root level — flat file structure)
+    Script:     scripts.js (root level — flat file structure)
+  ============================================================ -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ember & Oak Cafe</title>
-  
+  <title>Ember &amp; Oak Cafe — Neighborhood Coffee, Minneapolis MN</title>
+  <meta name="description" content="Ember & Oak is a neighborhood cafe in Minneapolis, MN. Locally roasted coffee, fresh pastries, and a warm space for the community.">
+
+  <!-- ── FONTS ── Google Fonts: Playfair Display, Inter, Roboto Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
-  
+
+  <!-- ── STYLESHEET ── Flat root path. Do NOT change to styles/styles.css -->
   <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
 
+  <!-- ============================================================
+    ACCESSIBILITY — Skip Link
+    Allows keyboard/screen reader users to jump past the header.
+  ============================================================ -->
   <a href="#main-content" class="skip-link">Skip to main content</a>
 
-  <header class="site-header">
+
+  <!-- ============================================================
+    HEADER & NAVIGATION
+    - Transparent on page load, transitions to solid on scroll (.scrolled)
+    - Mobile: hamburger toggle reveals floating dark card menu
+    - Desktop: inline nav links + CTA button
+    - id="site-header" used by scripts.js scroll handler
+  ============================================================ -->
+  <header id="site-header" class="site-header">
     <div class="container header-inner">
-      <a href="index.html" class="brand-link">
-        <span class="brand-name">Ember <span class="brand-amp">&</span> Oak</span>
-        <span class="brand-sub">Neighborhood Cafe</span>
+
+      <!-- Brand / Logo -->
+      <a href="index.html" class="brand-link" aria-label="Ember and Oak Cafe — Home">
+        <span class="brand-name">Ember <span class="brand-amp">&amp;</span> Oak</span>
+        <span class="brand-sub">Cafe</span>
       </a>
 
-      <nav class="main-nav">
-        <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Toggle menu">
-          <span class="hamburger"></span>
+      <!-- Primary Navigation -->
+      <nav class="main-nav" aria-label="Primary navigation">
+
+        <!-- Hamburger Toggle (mobile only — hidden at 900px+) -->
+        <button class="nav-toggle" type="button"
+                aria-expanded="false"
+                aria-controls="nav-menu"
+                aria-label="Toggle navigation menu">
+          <span class="hamburger" aria-hidden="true"></span>
         </button>
 
-        <ul id="nav-menu" class="nav-links">
-          <li><a href="index.html" class="active">Home</a></li>
+        <!-- Nav Links
+             Mobile:  floating dark card, revealed by .active class via JS
+             Desktop: inline flex row, visible at min-width 900px
+             Order: Home > Menu > Events > Catering > About > Contact (consistent across all pages)
+        -->
+        <ul id="nav-menu" class="nav-links" role="list">
+          <li><a href="index.html" class="active" aria-current="page">Home</a></li>
           <li><a href="menu.html">Menu</a></li>
-          <li><a href="catering.html">Catering</a></li>
           <li><a href="events.html">Events</a></li>
+          <li><a href="catering.html">Catering</a></li>
+          <li><a href="about.html">About</a></li>
           <li><a href="contact.html">Contact</a></li>
         </ul>
-        
-        <a href="menu.html" class="btn btn-primary nav-cta btn-sm">Order Ahead</a>
+
+        <!-- CTA Button (desktop only — hidden below 900px via .nav-cta CSS rule) -->
+        <a href="menu.html" class="btn btn-primary btn-sm nav-cta">View Menu</a>
+
       </nav>
     </div>
   </header>
 
+
+  <!-- ============================================================
+    MAIN CONTENT
+  ============================================================ -->
   <main id="main-content">
 
-    <section class="page-hero hero-home-adjusted">
-      <div class="hero-bg">
-        <img src="1000014684.jpg" alt="Interior of Ember & Oak Cafe" class="hero-bg-img">
+
+    <!-- ----------------------------------------------------------
+      SECTION 1: HERO
+      Full-viewport hero with background image, overlay, headline,
+      sub-copy, two CTA buttons, and frosted glass proof pills.
+      .hero-home-adjusted shifts the image focal point and inner padding.
+      Image: images/hero-home.jpg
+    ---------------------------------------------------------- -->
+    <section class="page-hero hero-home-adjusted" aria-label="Welcome">
+
+      <!-- Background Image + Dark Overlay -->
+      <div class="hero-bg" aria-hidden="true">
+        <img
+          src="images/hero-home.jpg"
+          alt="Warm interior of Ember and Oak Cafe"
+          class="hero-bg-img"
+          loading="eager">
         <div class="hero-bg-overlay"></div>
       </div>
-      
+
+      <!-- Hero Content -->
       <div class="container page-hero__inner">
+
+        <!-- Eyebrow Label -->
         <div class="page-hero__eyebrow">
-          <div class="page-hero__eyebrow-line"></div>
-          <span>Est. 2026</span>
+          <div class="page-hero__eyebrow-line" aria-hidden="true"></div>
+          <span>Est. 2026 — Minneapolis, MN</span>
         </div>
-        <h1 class="page-hero__title">Coffee <span>&</span> Community.</h1>
-        <p class="page-hero__sub">A warm space, honest ingredients, and the best espresso in the neighborhood. Come sit for a while.</p>
-        
+
+        <!-- Headline -->
+        <h1 class="page-hero__title">Coffee <span>&amp;</span> Community.</h1>
+
+        <!-- Subheadline -->
+        <p class="page-hero__sub">
+          A warm space, honest ingredients, and the best espresso in the
+          neighborhood. Come sit for a while.
+        </p>
+
+        <!-- CTA Buttons -->
         <div class="hero-ctas">
           <a href="menu.html" class="btn btn-primary">View Menu</a>
           <a href="contact.html" class="btn btn-ghost">Visit Us</a>
         </div>
 
-        <div class="hero-proof-strip">
-          <div class="proof-pill"><span class="proof-dot"></span> Open Today 'til 7PM</div>
-          <div class="proof-pill"><span class="proof-dot"></span> Locally Roasted</div>
+        <!-- Proof Pills — frosted glass trust signals below hero CTAs -->
+        <div class="hero-proof-strip" aria-label="Cafe highlights">
+          <div class="proof-pill">
+            <span class="proof-dot" aria-hidden="true"></span>
+            Open Today 'til 7PM
+          </div>
+          <div class="proof-pill">
+            <span class="proof-dot" aria-hidden="true"></span>
+            Locally Roasted
+          </div>
+          <div class="proof-pill">
+            <span class="proof-dot" aria-hidden="true"></span>
+            Scratch-Made Pastries
+          </div>
+          <div class="proof-pill">
+            <span class="proof-dot" aria-hidden="true"></span>
+            Community Nights
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ----------------------------------------------------------
+      SECTION 2: FEATURED ITEMS
+      Three item cards showcasing signature menu items.
+      Uses .item-card: image (240px height), card-body, card-actions.
+      The Butter Croissant lives here — not loose on the page.
+      Images: images/featured-*.jpg
+    ---------------------------------------------------------- -->
+    <section class="section" aria-labelledby="featured-heading">
+      <div class="container">
+
+        <div class="section-head">
+          <div>
+            <span class="section-label">Featured</span>
+            <h2 id="featured-heading">Regular Favorites</h2>
+          </div>
+          <a href="menu.html" class="btn btn-ghost btn-sm">Full Menu</a>
+        </div>
+
+        <!-- 3-column grid on desktop, 2-col on tablet, 1-col on mobile -->
+        <div class="grid cards-3">
+
+          <!-- Featured Item 1: Honey Oat Latte -->
+          <article class="card item-card">
+            <img
+              src="images/featured-honey-oat.jpg"
+              alt="Honey Oat Latte with heart latte art in a ceramic mug"
+              loading="lazy">
+            <div class="card-body">
+              <h3>Honey Oat Latte</h3>
+              <p class="muted">
+                Smooth espresso blended with steamed oat milk and a touch of
+                local honey. Lightly sweet, warm, and balanced.
+              </p>
+              <div class="card-actions">
+                <a href="menu.html#coffee" class="btn btn-ghost btn-sm">See on Menu</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Featured Item 2: Butter Croissant
+               NOTE: This was previously a stray image on the page.
+               It belongs here in the featured grid. -->
+          <article class="card item-card">
+            <img
+              src="images/featured-croissant.jpg"
+              alt="A flaky golden butter croissant on a wooden board"
+              loading="lazy">
+            <div class="card-body">
+              <h3>Butter Croissant</h3>
+              <p class="muted">
+                Flaky, golden, and lightly crisp on the outside. Baked fresh
+                each morning by our local bakery partners.
+              </p>
+              <div class="card-actions">
+                <a href="menu.html#food" class="btn btn-ghost btn-sm">See on Menu</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Featured Item 3: Oak Smoked Latte (Signature drink) -->
+          <article class="card item-card">
+            <img
+              src="images/featured-smoked-latte.jpg"
+              alt="Oak Smoked Latte — Ember and Oak signature drink"
+              loading="lazy">
+            <div class="card-body">
+              <h3>Oak Smoked Latte <span class="badge">Signature</span></h3>
+              <p class="muted">
+                Espresso, steamed milk, and our house-made smoked vanilla syrup.
+                The drink that started it all.
+              </p>
+              <div class="card-actions">
+                <a href="menu.html#coffee" class="btn btn-ghost btn-sm">See on Menu</a>
+              </div>
+            </div>
+          </article>
+
         </div>
       </div>
     </section>
 
-    <section class="section">
-      <div class="container two-col two-col-top">
-        <div class="card soft contact-info-card">
-          <span class="section-label">Location</span>
-          <h2>Visit Us</h2>
-          <p class="muted">123 Market Street<br>Minneapolis, MN 55401</p>
-          
-          <div style="margin-top: 32px;">
-            <div style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 0;">
+
+    <!-- Decorative section divider -->
+    <div class="section-divider" role="separator" aria-hidden="true"></div>
+
+
+    <!-- ----------------------------------------------------------
+      SECTION 3: UPCOMING EVENTS PREVIEW
+      Four event cards — 2-col grid on tablet+, stacks on mobile.
+      .event-card layout: horizontal on tablet (image left, content right),
+      vertical stack on mobile.
+      Images: images/events-*.jpg (must be committed to GitHub /images folder)
+      Links point to events.html for full details.
+    ---------------------------------------------------------- -->
+    <section class="section" aria-labelledby="events-heading">
+      <div class="container">
+
+        <div class="section-head">
+          <div>
+            <span class="section-label">Community</span>
+            <h2 id="events-heading">Upcoming Events</h2>
+          </div>
+          <a href="events.html" class="btn btn-ghost btn-sm">All Events</a>
+        </div>
+
+        <!-- 2-column grid on tablet+, single column on mobile -->
+        <div class="grid cards-2">
+
+          <!-- Event 1: Acoustic Friday -->
+          <article class="card event-card">
+            <img
+              class="event-card-img"
+              src="images/events-sarah.jpg"
+              alt="Sarah Jenkins performing acoustic guitar at the cafe"
+              loading="lazy">
+            <div class="event-card-content">
+              <div class="event-meta">
+                <span class="event-date">Friday, Nov 12 at 7:00 PM</span>
+                <span class="event-tag">Live Music</span>
+              </div>
+              <h3>Acoustic Friday: Sarah Jenkins</h3>
+              <p class="muted">
+                Local singer-songwriter Sarah Jenkins brings her acoustic guitar
+                for a quiet evening of folk music. Grab a latte and settle in.
+              </p>
+              <div class="card-actions">
+                <a href="events.html" class="btn btn-ghost btn-sm">Save a Seat</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Event 2: Open Mic Night -->
+          <article class="card event-card">
+            <img
+              class="event-card-img"
+              src="images/events-open-mic.jpg"
+              alt="Microphone on a stage stand lit for open mic night"
+              loading="lazy">
+            <div class="event-card-content">
+              <div class="event-meta">
+                <span class="event-date">Thursday, Nov 18 at 6:30 PM</span>
+                <span class="event-tag">Open Mic</span>
+              </div>
+              <h3>Community Open Mic Night</h3>
+              <p class="muted">
+                Poetry, music, short stories, and stand-up. The stage is yours
+                for 5 minutes. All experience levels welcome.
+              </p>
+              <div class="card-actions">
+                <a href="events.html" class="btn btn-ghost btn-sm">Learn More</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Event 3: Latte Art Workshop -->
+          <article class="card event-card">
+            <img
+              class="event-card-img"
+              src="images/events-art.jpg"
+              alt="Barista pouring latte art at a workshop"
+              loading="lazy">
+            <div class="event-card-content">
+              <div class="event-meta">
+                <span class="event-date">Sunday, Nov 21 at 1:00 PM</span>
+                <span class="event-tag">Workshop</span>
+              </div>
+              <h3>Latte Art Basics Class</h3>
+              <p class="muted">
+                Learn to pour hearts and rosettas with hands-on practice.
+                Materials, milk, and good company included.
+              </p>
+              <div class="card-actions">
+                <a href="events.html" class="btn btn-ghost btn-sm">Reserve a Spot</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Event 4: Board Game Night -->
+          <article class="card event-card">
+            <img
+              class="event-card-img"
+              src="images/events-game.jpg"
+              alt="Friends playing board games at a cafe table"
+              loading="lazy">
+            <div class="event-card-content">
+              <div class="event-meta">
+                <span class="event-date">Wednesday, Nov 24 at 5:00 PM</span>
+                <span class="event-tag">Community</span>
+              </div>
+              <h3>Board Game Night</h3>
+              <p class="muted">
+                We bring the games, you bring the strategy. Drip coffee is
+                half-price all evening. Bring friends or join a table.
+              </p>
+              <div class="card-actions">
+                <a href="events.html" class="btn btn-ghost btn-sm">Details</a>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- Decorative section divider -->
+    <div class="section-divider" role="separator" aria-hidden="true"></div>
+
+
+    <!-- ----------------------------------------------------------
+      SECTION 4: LOCATION INFO + TESTIMONIAL
+      Two-column layout using .two-col.two-col-top.
+      Left:  .card.soft.contact-info-card — address, phone, hours
+      Right: .card.quote-card — star rating, blockquote, attribution
+      Hours use .hours-row divs — no inline flex styles.
+    ---------------------------------------------------------- -->
+    <section class="section" aria-labelledby="visit-heading">
+      <div class="container">
+        <div class="two-col two-col-top">
+
+          <!-- Left: Location & Hours Card -->
+          <div class="card soft contact-info-card">
+            <span class="section-label">Location</span>
+            <h2 id="visit-heading">Visit Us</h2>
+
+            <p class="muted">
+              123 Oak Street<br>
+              Sauk Centre, MN 56378<br>
+              <a href="tel:+15551234567">(555) 123-4567</a>
+            </p>
+
+            <!-- Hours — .hours-row handles flex layout via CSS, no inline styles needed -->
+            <div style="margin-top: 32px;">
+              <h4 style="margin-bottom: 12px;">Hours</h4>
               <div class="hours-row">
-                <span class="muted">Mon-Wed</span>
+                <span class="muted">Mon – Wed</span>
                 <span>6:30 AM — 5:00 PM</span>
               </div>
               <div class="hours-row">
-                <span class="muted">Thu-Sat</span>
+                <span class="muted">Thu – Sat</span>
                 <span>6:30 AM — 7:00 PM</span>
               </div>
               <div class="hours-row">
-                <span class="muted">Sun</span>
+                <span class="muted">Sunday</span>
                 <span>8:00 AM — 3:00 PM</span>
               </div>
             </div>
+
+            <div style="margin-top: 32px;">
+              <a href="contact.html" class="btn btn-primary btn-sm">Get Directions</a>
+            </div>
           </div>
-        </div>
-        
-        <div class="card quote-card">
-          <div class="stars">★★★★★</div>
-          <blockquote>"Ember & Oak is exactly what this neighborhood needed. The coffee is phenomenal, but it's the welcoming atmosphere that keeps me coming back every single morning."</blockquote>
-          <figcaption>Sarah J., Local Resident</figcaption>
+
+          <!-- Right: Customer Testimonial -->
+          <figure class="card quote-card">
+            <div class="stars" aria-label="Five out of five stars">★★★★★</div>
+            <blockquote>
+              "Ember &amp; Oak is exactly what this neighborhood needed. The coffee
+              is phenomenal, but it's the welcoming atmosphere that keeps me coming
+              back every single morning."
+            </blockquote>
+            <figcaption>Sarah J., Local Resident</figcaption>
+          </figure>
+
         </div>
       </div>
     </section>
 
-    <section class="cta-strip">
+
+    <!-- ----------------------------------------------------------
+      SECTION 5: NEWSLETTER CTA STRIP
+      Full-width dark section with 4px accent top border.
+      .cta-strip handles background (#2A2624), padding, text color.
+      Form: Formspree placeholder — replace YOUR_FORM_ID_HERE when live.
+    ---------------------------------------------------------- -->
+    <section class="cta-strip" aria-labelledby="newsletter-heading">
       <div class="container">
-        <h2>Join the Coffee Club</h2>
-        <p class="muted">Get updates on seasonal drinks, private events, and fresh roasts.</p>
-        <form class="newsletter" action="https://formspree.io/f/YOUR_FORM_ID_HERE" method="POST">
-          <input type="email" name="email" placeholder="Enter your email" required aria-label="Email address">
+        <span class="section-label">Stay in the Loop</span>
+        <h2 id="newsletter-heading">Join the Coffee Club</h2>
+        <p class="muted">
+          Get updates on seasonal drinks, private events, and fresh roasts.
+        </p>
+
+        <!-- Replace YOUR_FORM_ID_HERE with actual Formspree ID when ready -->
+        <form
+          class="newsletter"
+          action="https://formspree.io/f/YOUR_FORM_ID_HERE"
+          method="POST"
+          aria-label="Email newsletter signup">
+          <label class="sr-only" for="newsletter-email">Email address</label>
+          <input
+            id="newsletter-email"
+            type="email"
+            name="email"
+            placeholder="Enter your email"
+            autocomplete="email"
+            required>
           <button type="submit" class="btn btn-primary">Subscribe</button>
         </form>
       </div>
     </section>
 
-  </main>
 
+  </main>
+  <!-- END MAIN CONTENT -->
+
+
+  <!-- ============================================================
+    FOOTER
+    Three-column grid layout:
+      Col 1 (2fr): Brand name, tagline, social icon links
+      Col 2 (1fr): Pages navigation
+      Col 3 (1fr): Visit / contact info
+    Footer bottom: copyright + WebOps Studio credit
+    This structure is consistent across all pages — do not alter.
+  ============================================================ -->
   <footer class="site-footer">
     <div class="container">
       <div class="footer-grid">
-        
+
+        <!-- Footer Col 1: Brand + Social -->
         <div class="footer-brand">
-          <a href="index.html" class="brand-link">
-            <span class="brand-name">Ember <span class="brand-amp">&</span> Oak</span>
+          <a href="index.html" class="brand-link" aria-label="Ember and Oak Cafe — Home">
+            <span class="brand-name">Ember <span class="brand-amp">&amp;</span> Oak</span>
+            <span class="brand-sub">Cafe</span>
           </a>
-          <p class="muted">Fueling the neighborhood with honest coffee, warm spaces, and genuine connection.</p>
-          
+          <p class="muted">
+            Fueling the neighborhood with honest coffee,
+            warm spaces, and genuine connection.
+          </p>
+
+          <!-- Social Links — inline SVG icons, no CDN dependency -->
           <div class="social-links">
+
             <a href="#" aria-label="Follow us on Instagram" class="social-icon">
               <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22"
                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -135,47 +498,76 @@
                 <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
               </svg>
             </a>
+
             <a href="#" aria-label="Follow us on Facebook" class="social-icon">
               <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22"
                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
                    stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
                    aria-hidden="true">
-                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7
-                      a1 1 0 0 1 1-1h3z"/>
+                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
               </svg>
             </a>
+
           </div>
         </div>
 
+        <!-- Footer Col 2: Page Navigation -->
         <div class="footer-col">
-          <h4>Explore</h4>
+          <h4>Pages</h4>
           <ul class="footer-list">
-            <li><a href="menu.html">Our Menu</a></li>
+            <li><a href="menu.html">Menu</a></li>
+            <li><a href="events.html">Events</a></li>
             <li><a href="catering.html">Catering</a></li>
-            <li><a href="events.html">Private Events</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
           </ul>
         </div>
 
+        <!-- Footer Col 3: Visit Info -->
         <div class="footer-col">
-          <h4>Connect</h4>
+          <h4>Visit</h4>
           <ul class="footer-list">
-            <li><a href="contact.html">Contact Us</a></li>
-            <li>123 Market Street, MN</li>
-            <li>(555) 123-4567</li>
+            <li>123 Oak Street, Sauk Centre, MN</li>
+            <li><a href="tel:+15551234567">(555) 123-4567</a></li>
+            <li><a href="mailto:hello@emberandoak.cafe">hello@emberandoak.cafe</a></li>
           </ul>
         </div>
 
       </div>
 
+      <!-- Footer Bottom: Copyright + Credit -->
       <div class="footer-bottom">
-        <span>&copy; 2026 Ember & Oak Cafe. All rights reserved.</span>
+        <span>&copy; <span id="year">2026</span> Ember &amp; Oak Cafe. All rights reserved.</span>
         <span>Site by <a href="#">WebOps Studio</a></span>
       </div>
+
     </div>
   </footer>
 
-  <button class="back-to-top" aria-label="Back to top">↑</button>
 
+  <!-- ============================================================
+    FLOATING UI
+  ============================================================ -->
+
+  <!-- Back to Top — shown after 300px scroll, controlled by scripts.js -->
+  <button class="back-to-top" type="button" aria-label="Back to top">↑</button>
+
+
+  <!-- ============================================================
+    SCRIPTS
+    Flat root path — scripts.js lives at the repo root.
+    Do NOT change to js/scripts.js.
+    Handles: sticky header scroll state, mobile nav toggle, back-to-top.
+  ============================================================ -->
   <script src="scripts.js"></script>
+
+  <!-- Auto-update copyright year in footer -->
+  <script>
+    (function () {
+      var yearEl = document.getElementById('year');
+      if (yearEl) yearEl.textContent = new Date().getFullYear();
+    })();
+  </script>
+
 </body>
 </html>
