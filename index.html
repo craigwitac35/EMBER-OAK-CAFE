@@ -4,38 +4,41 @@
   <!-- ============================================================
     EMBER & OAK CAFE — index.html
     Page:       Homepage
-    Stylesheet: styles.css (root level — flat file structure)
-    Script:     scripts.js (root level — flat file structure)
-    Images:     All inside /images/ folder in repo root
+    Stylesheet: styles.css (root level)
+    Script:     scripts.js (root level)
+    Images:
+      Hero:       images/home-hero.jpg
+      Featured 1: images/drink-honey-oat-latte.jpg
+      Featured 2: images/pastry-butter-croissant.jpg
+      Featured 3: images/drink-ember-mocha.jpg
+      Events:     images/events-sarah.jpg
+                  images/events-open-mic.jpg
+                  images/events-art.jpg
+                  images/events-game.jpg
   ============================================================ -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ember &amp; Oak Cafe — Neighborhood Coffee, Sauk Centre MN</title>
   <meta name="description" content="Ember & Oak is a neighborhood cafe in Sauk Centre, MN. Locally roasted coffee, fresh pastries, and a warm space for the community.">
 
+  <link rel="icon" href="images/logo-favicon.png" type="image/png">
+
   <!-- ── FONTS ── -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
 
-  <!-- ── STYLESHEET ── Root level path -->
+  <!-- ── STYLESHEET ── Root level -->
   <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
 
-  <!-- ============================================================
-    ACCESSIBILITY — Skip Link
-  ============================================================ -->
   <a href="#main-content" class="skip-link">Skip to main content</a>
 
 
   <!-- ============================================================
     HEADER & NAVIGATION
-    - Transparent on load, solid on scroll (.scrolled via JS)
-    - Mobile: floating dark card menu
-    - Desktop: inline nav + CTA button
-    - Nav order: Home > Menu > Events > Catering > About > Contact
   ============================================================ -->
   <header id="site-header" class="site-header">
     <div class="container header-inner">
@@ -46,7 +49,6 @@
       </a>
 
       <nav class="main-nav" aria-label="Primary navigation">
-
         <button class="nav-toggle" type="button"
                 aria-expanded="false"
                 aria-controls="nav-menu"
@@ -64,15 +66,11 @@
         </ul>
 
         <a href="menu.html" class="btn btn-primary btn-sm nav-cta">View Menu</a>
-
       </nav>
     </div>
   </header>
 
 
-  <!-- ============================================================
-    MAIN CONTENT
-  ============================================================ -->
   <main id="main-content">
 
 
@@ -92,7 +90,6 @@
       </div>
 
       <div class="container page-hero__inner">
-
         <div class="page-hero__eyebrow">
           <div class="page-hero__eyebrow-line" aria-hidden="true"></div>
           <span>Est. 2026 — Sauk Centre, MN</span>
@@ -128,17 +125,15 @@
             Community Nights
           </div>
         </div>
-
       </div>
     </section>
 
 
     <!-- ----------------------------------------------------------
       SECTION 2: FEATURED ITEMS
-      Images:
-        images/featured-honey-oat.jpg
-        images/featured-croissant.jpg
-        images/featured-smoked-latte.jpg
+      images/drink-honey-oat-latte.jpg
+      images/pastry-butter-croissant.jpg
+      images/drink-ember-mocha.jpg
     ---------------------------------------------------------- -->
     <section class="section" aria-labelledby="featured-heading">
       <div class="container">
@@ -153,10 +148,9 @@
 
         <div class="grid cards-3">
 
-          <!-- Honey Oat Latte -->
           <article class="card item-card">
             <img
-              src="images/featured-honey-oat.jpg"
+              src="images/drink-honey-oat-latte.jpg"
               alt="Honey Oat Latte with heart latte art in a ceramic mug"
               loading="lazy">
             <div class="card-body">
@@ -166,15 +160,14 @@
                 local honey. Lightly sweet, warm, and balanced.
               </p>
               <div class="card-actions">
-                <a href="menu.html#coffee" class="btn btn-ghost btn-sm">See on Menu</a>
+                <a href="menu.html#espresso" class="btn btn-ghost btn-sm">See on Menu</a>
               </div>
             </div>
           </article>
 
-          <!-- Butter Croissant -->
           <article class="card item-card">
             <img
-              src="images/featured-croissant.jpg"
+              src="images/pastry-butter-croissant.jpg"
               alt="A flaky golden butter croissant on a wooden board"
               loading="lazy">
             <div class="card-body">
@@ -184,25 +177,24 @@
                 each morning by our local bakery partners.
               </p>
               <div class="card-actions">
-                <a href="menu.html#food" class="btn btn-ghost btn-sm">See on Menu</a>
+                <a href="menu.html#pastries" class="btn btn-ghost btn-sm">See on Menu</a>
               </div>
             </div>
           </article>
 
-          <!-- Oak Smoked Latte -->
           <article class="card item-card">
             <img
-              src="images/featured-smoked-latte.jpg"
-              alt="Oak Smoked Latte — Ember and Oak signature drink"
+              src="images/drink-ember-mocha.jpg"
+              alt="Ember Mocha — rich espresso with dark chocolate and cinnamon"
               loading="lazy">
             <div class="card-body">
-              <h3>Oak Smoked Latte <span class="badge">Signature</span></h3>
+              <h3>Ember Mocha <span class="badge">Signature</span></h3>
               <p class="muted">
-                Espresso, steamed milk, and our house-made smoked vanilla syrup.
-                The drink that started it all.
+                Rich espresso with dark chocolate and a hint of cinnamon.
+                Bold, warm, and built for slow mornings.
               </p>
               <div class="card-actions">
-                <a href="menu.html#coffee" class="btn btn-ghost btn-sm">See on Menu</a>
+                <a href="menu.html#espresso" class="btn btn-ghost btn-sm">See on Menu</a>
               </div>
             </div>
           </article>
@@ -212,17 +204,15 @@
     </section>
 
 
-    <!-- Decorative divider -->
     <div class="section-divider" role="separator" aria-hidden="true"></div>
 
 
     <!-- ----------------------------------------------------------
       SECTION 3: UPCOMING EVENTS PREVIEW
-      Images:
-        images/events-sarah.jpg
-        images/events-open-mic.jpg
-        images/events-art.jpg
-        images/events-game.jpg
+      images/events-sarah.jpg
+      images/events-open-mic.jpg
+      images/events-art.jpg
+      images/events-game.jpg
     ---------------------------------------------------------- -->
     <section class="section" aria-labelledby="events-heading">
       <div class="container">
@@ -237,7 +227,6 @@
 
         <div class="grid cards-2">
 
-          <!-- Event 1: Acoustic Friday -->
           <article class="card event-card">
             <img
               class="event-card-img"
@@ -260,7 +249,6 @@
             </div>
           </article>
 
-          <!-- Event 2: Open Mic Night -->
           <article class="card event-card">
             <img
               class="event-card-img"
@@ -283,7 +271,6 @@
             </div>
           </article>
 
-          <!-- Event 3: Latte Art Workshop -->
           <article class="card event-card">
             <img
               class="event-card-img"
@@ -306,7 +293,6 @@
             </div>
           </article>
 
-          <!-- Event 4: Board Game Night -->
           <article class="card event-card">
             <img
               class="event-card-img"
@@ -334,24 +320,19 @@
     </section>
 
 
-    <!-- Decorative divider -->
     <div class="section-divider" role="separator" aria-hidden="true"></div>
 
 
     <!-- ----------------------------------------------------------
       SECTION 4: LOCATION + TESTIMONIAL
-      Left:  Address, phone, hours
-      Right: Customer quote card
     ---------------------------------------------------------- -->
     <section class="section" aria-labelledby="visit-heading">
       <div class="container">
         <div class="two-col two-col-top">
 
-          <!-- Location & Hours -->
           <div class="card soft contact-info-card">
             <span class="section-label">Location</span>
             <h2 id="visit-heading">Visit Us</h2>
-
             <p class="muted">
               123 Oak Street<br>
               Sauk Centre, MN 56378<br>
@@ -379,7 +360,6 @@
             </div>
           </div>
 
-          <!-- Testimonial -->
           <figure class="card quote-card">
             <div class="stars" aria-label="Five out of five stars">★★★★★</div>
             <blockquote>
@@ -397,15 +377,12 @@
 
     <!-- ----------------------------------------------------------
       SECTION 5: NEWSLETTER CTA STRIP
-      Formspree ID is a placeholder — replace when live.
     ---------------------------------------------------------- -->
     <section class="cta-strip" aria-labelledby="newsletter-heading">
       <div class="container">
         <span class="section-label">Stay in the Loop</span>
         <h2 id="newsletter-heading">Join the Coffee Club</h2>
-        <p class="muted">
-          Get updates on seasonal drinks, private events, and fresh roasts.
-        </p>
+        <p class="muted">Get updates on seasonal drinks, private events, and fresh roasts.</p>
         <form
           class="newsletter"
           action="https://formspree.io/f/YOUR_FORM_ID_HERE"
@@ -430,14 +407,11 @@
 
   <!-- ============================================================
     FOOTER
-    Columns: Brand + Social | Pages | Visit
-    Consistent across all pages — do not change per page.
   ============================================================ -->
   <footer class="site-footer">
     <div class="container">
       <div class="footer-grid">
 
-        <!-- Brand + Social -->
         <div class="footer-brand">
           <a href="index.html" class="brand-link" aria-label="Ember and Oak Cafe — Home">
             <span class="brand-name">Ember <span class="brand-amp">&amp;</span> Oak</span>
@@ -469,7 +443,6 @@
           </div>
         </div>
 
-        <!-- Pages -->
         <div class="footer-col">
           <h4>Pages</h4>
           <ul class="footer-list">
@@ -481,7 +454,6 @@
           </ul>
         </div>
 
-        <!-- Visit -->
         <div class="footer-col">
           <h4>Visit</h4>
           <ul class="footer-list">
@@ -497,18 +469,12 @@
         <span>&copy; <span id="year">2026</span> Ember &amp; Oak Cafe. All rights reserved.</span>
         <span>Site by <a href="#">WebOps Studio</a></span>
       </div>
-
     </div>
   </footer>
 
-
-  <!-- Back to Top -->
   <button class="back-to-top" type="button" aria-label="Back to top">↑</button>
 
-  <!-- ── SCRIPTS ── Root level path -->
   <script src="scripts.js"></script>
-
-  <!-- Auto-update copyright year -->
   <script>
     (function () {
       var y = document.getElementById('year');
