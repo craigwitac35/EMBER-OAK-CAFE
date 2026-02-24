@@ -8,6 +8,7 @@
      1. STICKY HEADER SCROLL STATE
      2. MOBILE NAVIGATION TOGGLE
      3. BACK TO TOP BUTTON
+     4. MENU CATEGORY FILTER
 ============================================================ */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -18,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
     SECTION 1: STICKY HEADER SCROLL STATE
     What it does:
       - Watches the scroll position on every page
-      - Adds .scrolled to .site-header when user scrolls past 50px
+      - Adds .scrolled to #site-header when user scrolls past 50px
       - Removes .scrolled when user scrolls back to the top
       - .scrolled triggers: solid background, reduced padding,
         dark text/icons replacing white (all handled in CSS)
@@ -43,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Run once immediately to catch mid-scroll page loads
     handleScroll();
 
-    // Then keep watching on every scroll event
+    // Keep watching on every scroll event
     window.addEventListener('scroll', handleScroll, { passive: true });
   }
 
@@ -83,13 +84,12 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
 
-    /* C) Escape key — close the menu if it's open */
+    /* C) Escape key — close the menu if open */
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && navLinks.classList.contains('active')) {
         navToggle.setAttribute('aria-expanded', 'false');
         navLinks.classList.remove('active');
-        // Return focus to the toggle button for keyboard users
-        navToggle.focus();
+        navToggle.focus(); // Return focus to toggle for keyboard users
       }
     });
 
@@ -109,7 +109,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (backToTopBtn) {
 
-    /* Show/hide based on scroll depth */
     const toggleBackToTop = () => {
       if (window.scrollY > 300) {
         backToTopBtn.classList.add('visible');
@@ -120,9 +119,68 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.addEventListener('scroll', toggleBackToTop, { passive: true });
 
-    /* Smooth scroll to top on click */
     backToTopBtn.addEventListener('click', () => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+  }
+
+
+  /* ----------------------------------------------------------
+    SECTION 4: MENU CATEGORY FILTER
+    What it does:
+      - Only runs on pages that have .filter-btn elements
+        (currently menu.html only — safe to load on all pages)
+      - Clicking a filter button shows only the matching
+        .menu-category[data-category] section
+      - "All Items" (data-filter="all") shows everything
+      - .menu-divider elements between categories are hidden
+        automatically when only one category is visible —
+        prevents orphaned dividers from appearing mid-page
+      - Active button gets .active class for CSS orange underline
+
+    How the data attributes connect:
+      HTML button:  <button data-filter="espresso">
+      HTML section: <div data-category="espresso">
+      These values must match exactly for the filter to work.
+
+    Fade animation:
+      Categories fade out then back in on filter change.
+      Uses CSS opacity transition on .menu-category.
+      The class .menu-hidden sets opacity:0 + display:none.
+  ---------------------------------------------------------- */
+  const filterBtns   = document.querySelectorAll('.filter-btn');
+  const menuCategories = document.querySelectorAll('.menu-category[data-category]');
+  const menuDividers   = document.querySelectorAll('.menu-divider');
+
+  if (filterBtns.length && menuCategories.length) {
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+
+        // ── Update active button state ──
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const filter = btn.getAttribute('data-filter');
+
+        // ── Show / hide categories ──
+        menuCategories.forEach(category => {
+          if (filter === 'all' || category.getAttribute('data-category') === filter) {
+            category.style.display = '';
+          } else {
+            category.style.display = 'none';
+          }
+        });
+
+        // ── Show / hide dividers ──
+        // Only show dividers when ALL categories are visible (filter = all)
+        // Hide them when a single category is filtered — no orphaned lines
+        menuDividers.forEach(divider => {
+          divider.style.display = filter === 'all' ? '' : 'none';
+        });
+
+      });
     });
 
   }
