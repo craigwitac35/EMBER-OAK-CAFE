@@ -3,23 +3,22 @@
 <head>
   <!-- ============================================================
     EMBER & OAK CAFE — index.html
-    Page: Homepage
-    Description: Main landing page. Contains hero, featured items,
-                 upcoming events preview, testimonial, and newsletter CTA.
+    Page:       Homepage
     Stylesheet: styles.css (root level — flat file structure)
     Script:     scripts.js (root level — flat file structure)
+    Images:     All inside /images/ folder in repo root
   ============================================================ -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ember &amp; Oak Cafe — Neighborhood Coffee, Minneapolis MN</title>
-  <meta name="description" content="Ember & Oak is a neighborhood cafe in Minneapolis, MN. Locally roasted coffee, fresh pastries, and a warm space for the community.">
+  <title>Ember &amp; Oak Cafe — Neighborhood Coffee, Sauk Centre MN</title>
+  <meta name="description" content="Ember & Oak is a neighborhood cafe in Sauk Centre, MN. Locally roasted coffee, fresh pastries, and a warm space for the community.">
 
-  <!-- ── FONTS ── Google Fonts: Playfair Display, Inter, Roboto Mono -->
+  <!-- ── FONTS ── -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
 
-  <!-- ── STYLESHEET ── Flat root path. Do NOT change to styles/styles.css -->
+  <!-- ── STYLESHEET ── Root level path -->
   <link rel="stylesheet" href="styles.css">
 </head>
 
@@ -27,31 +26,27 @@
 
   <!-- ============================================================
     ACCESSIBILITY — Skip Link
-    Allows keyboard/screen reader users to jump past the header.
   ============================================================ -->
   <a href="#main-content" class="skip-link">Skip to main content</a>
 
 
   <!-- ============================================================
     HEADER & NAVIGATION
-    - Transparent on page load, transitions to solid on scroll (.scrolled)
-    - Mobile: hamburger toggle reveals floating dark card menu
-    - Desktop: inline nav links + CTA button
-    - id="site-header" used by scripts.js scroll handler
+    - Transparent on load, solid on scroll (.scrolled via JS)
+    - Mobile: floating dark card menu
+    - Desktop: inline nav + CTA button
+    - Nav order: Home > Menu > Events > Catering > About > Contact
   ============================================================ -->
   <header id="site-header" class="site-header">
     <div class="container header-inner">
 
-      <!-- Brand / Logo -->
       <a href="index.html" class="brand-link" aria-label="Ember and Oak Cafe — Home">
         <span class="brand-name">Ember <span class="brand-amp">&amp;</span> Oak</span>
         <span class="brand-sub">Cafe</span>
       </a>
 
-      <!-- Primary Navigation -->
       <nav class="main-nav" aria-label="Primary navigation">
 
-        <!-- Hamburger Toggle (mobile only — hidden at 900px+) -->
         <button class="nav-toggle" type="button"
                 aria-expanded="false"
                 aria-controls="nav-menu"
@@ -59,11 +54,6 @@
           <span class="hamburger" aria-hidden="true"></span>
         </button>
 
-        <!-- Nav Links
-             Mobile:  floating dark card, revealed by .active class via JS
-             Desktop: inline flex row, visible at min-width 900px
-             Order: Home > Menu > Events > Catering > About > Contact (consistent across all pages)
-        -->
         <ul id="nav-menu" class="nav-links" role="list">
           <li><a href="index.html" class="active" aria-current="page">Home</a></li>
           <li><a href="menu.html">Menu</a></li>
@@ -73,7 +63,6 @@
           <li><a href="contact.html">Contact</a></li>
         </ul>
 
-        <!-- CTA Button (desktop only — hidden below 900px via .nav-cta CSS rule) -->
         <a href="menu.html" class="btn btn-primary btn-sm nav-cta">View Menu</a>
 
       </nav>
@@ -89,48 +78,38 @@
 
     <!-- ----------------------------------------------------------
       SECTION 1: HERO
-      Full-viewport hero with background image, overlay, headline,
-      sub-copy, two CTA buttons, and frosted glass proof pills.
-      .hero-home-adjusted shifts the image focal point and inner padding.
-      Image: images/hero-home.jpg
+      Image: images/home-hero.jpg
     ---------------------------------------------------------- -->
     <section class="page-hero hero-home-adjusted" aria-label="Welcome">
 
-      <!-- Background Image + Dark Overlay -->
       <div class="hero-bg" aria-hidden="true">
         <img
-          src="images/hero-home.jpg"
+          src="images/home-hero.jpg"
           alt="Warm interior of Ember and Oak Cafe"
           class="hero-bg-img"
           loading="eager">
         <div class="hero-bg-overlay"></div>
       </div>
 
-      <!-- Hero Content -->
       <div class="container page-hero__inner">
 
-        <!-- Eyebrow Label -->
         <div class="page-hero__eyebrow">
           <div class="page-hero__eyebrow-line" aria-hidden="true"></div>
-          <span>Est. 2026 — Minneapolis, MN</span>
+          <span>Est. 2026 — Sauk Centre, MN</span>
         </div>
 
-        <!-- Headline -->
         <h1 class="page-hero__title">Coffee <span>&amp;</span> Community.</h1>
 
-        <!-- Subheadline -->
         <p class="page-hero__sub">
           A warm space, honest ingredients, and the best espresso in the
           neighborhood. Come sit for a while.
         </p>
 
-        <!-- CTA Buttons -->
         <div class="hero-ctas">
           <a href="menu.html" class="btn btn-primary">View Menu</a>
           <a href="contact.html" class="btn btn-ghost">Visit Us</a>
         </div>
 
-        <!-- Proof Pills — frosted glass trust signals below hero CTAs -->
         <div class="hero-proof-strip" aria-label="Cafe highlights">
           <div class="proof-pill">
             <span class="proof-dot" aria-hidden="true"></span>
@@ -156,10 +135,10 @@
 
     <!-- ----------------------------------------------------------
       SECTION 2: FEATURED ITEMS
-      Three item cards showcasing signature menu items.
-      Uses .item-card: image (240px height), card-body, card-actions.
-      The Butter Croissant lives here — not loose on the page.
-      Images: images/featured-*.jpg
+      Images:
+        images/featured-honey-oat.jpg
+        images/featured-croissant.jpg
+        images/featured-smoked-latte.jpg
     ---------------------------------------------------------- -->
     <section class="section" aria-labelledby="featured-heading">
       <div class="container">
@@ -172,10 +151,9 @@
           <a href="menu.html" class="btn btn-ghost btn-sm">Full Menu</a>
         </div>
 
-        <!-- 3-column grid on desktop, 2-col on tablet, 1-col on mobile -->
         <div class="grid cards-3">
 
-          <!-- Featured Item 1: Honey Oat Latte -->
+          <!-- Honey Oat Latte -->
           <article class="card item-card">
             <img
               src="images/featured-honey-oat.jpg"
@@ -193,9 +171,7 @@
             </div>
           </article>
 
-          <!-- Featured Item 2: Butter Croissant
-               NOTE: This was previously a stray image on the page.
-               It belongs here in the featured grid. -->
+          <!-- Butter Croissant -->
           <article class="card item-card">
             <img
               src="images/featured-croissant.jpg"
@@ -213,7 +189,7 @@
             </div>
           </article>
 
-          <!-- Featured Item 3: Oak Smoked Latte (Signature drink) -->
+          <!-- Oak Smoked Latte -->
           <article class="card item-card">
             <img
               src="images/featured-smoked-latte.jpg"
@@ -236,17 +212,17 @@
     </section>
 
 
-    <!-- Decorative section divider -->
+    <!-- Decorative divider -->
     <div class="section-divider" role="separator" aria-hidden="true"></div>
 
 
     <!-- ----------------------------------------------------------
       SECTION 3: UPCOMING EVENTS PREVIEW
-      Four event cards — 2-col grid on tablet+, stacks on mobile.
-      .event-card layout: horizontal on tablet (image left, content right),
-      vertical stack on mobile.
-      Images: images/events-*.jpg (must be committed to GitHub /images folder)
-      Links point to events.html for full details.
+      Images:
+        images/events-sarah.jpg
+        images/events-open-mic.jpg
+        images/events-art.jpg
+        images/events-game.jpg
     ---------------------------------------------------------- -->
     <section class="section" aria-labelledby="events-heading">
       <div class="container">
@@ -259,7 +235,6 @@
           <a href="events.html" class="btn btn-ghost btn-sm">All Events</a>
         </div>
 
-        <!-- 2-column grid on tablet+, single column on mobile -->
         <div class="grid cards-2">
 
           <!-- Event 1: Acoustic Friday -->
@@ -359,22 +334,20 @@
     </section>
 
 
-    <!-- Decorative section divider -->
+    <!-- Decorative divider -->
     <div class="section-divider" role="separator" aria-hidden="true"></div>
 
 
     <!-- ----------------------------------------------------------
-      SECTION 4: LOCATION INFO + TESTIMONIAL
-      Two-column layout using .two-col.two-col-top.
-      Left:  .card.soft.contact-info-card — address, phone, hours
-      Right: .card.quote-card — star rating, blockquote, attribution
-      Hours use .hours-row divs — no inline flex styles.
+      SECTION 4: LOCATION + TESTIMONIAL
+      Left:  Address, phone, hours
+      Right: Customer quote card
     ---------------------------------------------------------- -->
     <section class="section" aria-labelledby="visit-heading">
       <div class="container">
         <div class="two-col two-col-top">
 
-          <!-- Left: Location & Hours Card -->
+          <!-- Location & Hours -->
           <div class="card soft contact-info-card">
             <span class="section-label">Location</span>
             <h2 id="visit-heading">Visit Us</h2>
@@ -385,7 +358,6 @@
               <a href="tel:+15551234567">(555) 123-4567</a>
             </p>
 
-            <!-- Hours — .hours-row handles flex layout via CSS, no inline styles needed -->
             <div style="margin-top: 32px;">
               <h4 style="margin-bottom: 12px;">Hours</h4>
               <div class="hours-row">
@@ -407,13 +379,13 @@
             </div>
           </div>
 
-          <!-- Right: Customer Testimonial -->
+          <!-- Testimonial -->
           <figure class="card quote-card">
             <div class="stars" aria-label="Five out of five stars">★★★★★</div>
             <blockquote>
               "Ember &amp; Oak is exactly what this neighborhood needed. The coffee
-              is phenomenal, but it's the welcoming atmosphere that keeps me coming
-              back every single morning."
+              is phenomenal, but it's the welcoming atmosphere that keeps me
+              coming back every single morning."
             </blockquote>
             <figcaption>Sarah J., Local Resident</figcaption>
           </figure>
@@ -425,9 +397,7 @@
 
     <!-- ----------------------------------------------------------
       SECTION 5: NEWSLETTER CTA STRIP
-      Full-width dark section with 4px accent top border.
-      .cta-strip handles background (#2A2624), padding, text color.
-      Form: Formspree placeholder — replace YOUR_FORM_ID_HERE when live.
+      Formspree ID is a placeholder — replace when live.
     ---------------------------------------------------------- -->
     <section class="cta-strip" aria-labelledby="newsletter-heading">
       <div class="container">
@@ -436,8 +406,6 @@
         <p class="muted">
           Get updates on seasonal drinks, private events, and fresh roasts.
         </p>
-
-        <!-- Replace YOUR_FORM_ID_HERE with actual Formspree ID when ready -->
         <form
           class="newsletter"
           action="https://formspree.io/f/YOUR_FORM_ID_HERE"
@@ -458,23 +426,18 @@
 
 
   </main>
-  <!-- END MAIN CONTENT -->
 
 
   <!-- ============================================================
     FOOTER
-    Three-column grid layout:
-      Col 1 (2fr): Brand name, tagline, social icon links
-      Col 2 (1fr): Pages navigation
-      Col 3 (1fr): Visit / contact info
-    Footer bottom: copyright + WebOps Studio credit
-    This structure is consistent across all pages — do not alter.
+    Columns: Brand + Social | Pages | Visit
+    Consistent across all pages — do not change per page.
   ============================================================ -->
   <footer class="site-footer">
     <div class="container">
       <div class="footer-grid">
 
-        <!-- Footer Col 1: Brand + Social -->
+        <!-- Brand + Social -->
         <div class="footer-brand">
           <a href="index.html" class="brand-link" aria-label="Ember and Oak Cafe — Home">
             <span class="brand-name">Ember <span class="brand-amp">&amp;</span> Oak</span>
@@ -484,10 +447,7 @@
             Fueling the neighborhood with honest coffee,
             warm spaces, and genuine connection.
           </p>
-
-          <!-- Social Links — inline SVG icons, no CDN dependency -->
           <div class="social-links">
-
             <a href="#" aria-label="Follow us on Instagram" class="social-icon">
               <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22"
                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -498,7 +458,6 @@
                 <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
               </svg>
             </a>
-
             <a href="#" aria-label="Follow us on Facebook" class="social-icon">
               <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22"
                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -507,11 +466,10 @@
                 <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
               </svg>
             </a>
-
           </div>
         </div>
 
-        <!-- Footer Col 2: Page Navigation -->
+        <!-- Pages -->
         <div class="footer-col">
           <h4>Pages</h4>
           <ul class="footer-list">
@@ -523,7 +481,7 @@
           </ul>
         </div>
 
-        <!-- Footer Col 3: Visit Info -->
+        <!-- Visit -->
         <div class="footer-col">
           <h4>Visit</h4>
           <ul class="footer-list">
@@ -535,7 +493,6 @@
 
       </div>
 
-      <!-- Footer Bottom: Copyright + Credit -->
       <div class="footer-bottom">
         <span>&copy; <span id="year">2026</span> Ember &amp; Oak Cafe. All rights reserved.</span>
         <span>Site by <a href="#">WebOps Studio</a></span>
@@ -545,27 +502,17 @@
   </footer>
 
 
-  <!-- ============================================================
-    FLOATING UI
-  ============================================================ -->
-
-  <!-- Back to Top — shown after 300px scroll, controlled by scripts.js -->
+  <!-- Back to Top -->
   <button class="back-to-top" type="button" aria-label="Back to top">↑</button>
 
-
-  <!-- ============================================================
-    SCRIPTS
-    Flat root path — scripts.js lives at the repo root.
-    Do NOT change to js/scripts.js.
-    Handles: sticky header scroll state, mobile nav toggle, back-to-top.
-  ============================================================ -->
+  <!-- ── SCRIPTS ── Root level path -->
   <script src="scripts.js"></script>
 
-  <!-- Auto-update copyright year in footer -->
+  <!-- Auto-update copyright year -->
   <script>
     (function () {
-      var yearEl = document.getElementById('year');
-      if (yearEl) yearEl.textContent = new Date().getFullYear();
+      var y = document.getElementById('year');
+      if (y) y.textContent = new Date().getFullYear();
     })();
   </script>
 
