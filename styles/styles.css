@@ -21,7 +21,7 @@
   
   --color-border: #E8E3DF;       /* Soft tan border for cards and dividers */
   
-  /* UPDATED: Reverted overlay to original lighter opacity */
+  /* Lighter overlay for brighter hero images */
   --color-overlay: rgba(42, 38, 36, 0.45); 
 
   /* Typography */
@@ -442,7 +442,6 @@ p.muted { color: var(--color-text-muted); }
   background: var(--color-accent);
 }
 
-/* UPDATED: Removed text-shadows for cleaner look on brighter background */
 .page-hero__title {
   color: var(--color-surface);
 }
@@ -457,7 +456,7 @@ p.muted { color: var(--color-text-muted); }
   font-weight: 300;
   max-width: 560px;
   margin-bottom: 40px;
-  opacity: 0.9; /* Reverted opacity */
+  opacity: 0.9;
 }
 
 .hero-ctas {
@@ -497,7 +496,7 @@ p.muted { color: var(--color-text-muted); }
   background: var(--color-accent);
 }
 
-/* UPDATED: Special adjustments for the Home Page Hero */
+/* Special adjustments for the Home Page Hero */
 .hero-home-adjusted .hero-bg-img {
   /* Moves the background image UP so the sign is higher */
   object-position: center 20%; 
@@ -738,6 +737,16 @@ select.form-control {
 }
 .cta-strip h2 { color: var(--color-surface); }
 .cta-strip .muted { color: rgba(255,255,255,0.7); max-width: 500px; margin: 0 auto 32px; }
+
+/* FIX FOR THE INVISIBLE GHOST BUTTONS IN THE DARK CTA SECTION */
+.cta-strip .btn-ghost {
+  color: var(--color-surface);
+  border-color: rgba(255,255,255,0.4);
+}
+.cta-strip .btn-ghost:hover {
+  background: var(--color-surface);
+  color: var(--color-text-main);
+}
 
 .newsletter {
   display: flex;
