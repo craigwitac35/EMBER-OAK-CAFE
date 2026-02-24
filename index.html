@@ -7,7 +7,7 @@
   <title>Ember & Oak Cafe | Crafted Coffee. Shared Moments.</title>
   <meta name="description" content="Ember & Oak Cafe is a neighborhood coffee shop serving crafted drinks, scratch made pastries, and warm community nights. View the menu, hours, and upcoming events." />
 
-  <link rel="icon" href="images/favicon.png" type="image/png" />
+  <link rel="icon" href="images/logo-favicon.png" type="image/png" />
   <link rel="stylesheet" href="styles/styles.css" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -122,7 +122,6 @@
         <h2>Regular favorites</h2>
 
         <div class="grid cards-3">
-          
           <article class="card item-card">
             <img src="images/drink-honey-oat-latte.jpg" alt="Honey Oat Latte" loading="lazy" />
             <div class="card-body">
@@ -155,7 +154,6 @@
               </div>
             </div>
           </article>
-
         </div>
 
         <div class="center-row">
@@ -192,22 +190,22 @@
           </div>
 
           <div class="grid cards-2 tight">
-            <article class="card event-card">
+            <article class="card event-card" style="padding: 32px;">
               <div class="event-meta">
                 <span class="event-date">Fri 7:00 PM</span>
                 <span class="event-tag">Live</span>
               </div>
-              <h3>Acoustic Fridays</h3>
-              <p>Local musicians, low volume, warm lights.</p>
+              <h3 style="margin-bottom: 8px;">Acoustic Fridays</h3>
+              <p style="margin: 0;">Local musicians, low volume, warm lights.</p>
             </article>
 
-            <article class="card event-card">
+            <article class="card event-card" style="padding: 32px;">
               <div class="event-meta">
                 <span class="event-date">Thu 6:30 PM</span>
                 <span class="event-tag">Open Mic</span>
               </div>
-              <h3>Open Mic Night</h3>
-              <p>Poetry, music, and stories. All welcome.</p>
+              <h3 style="margin-bottom: 8px;">Open Mic Night</h3>
+              <p style="margin: 0;">Poetry, music, and stories. All welcome.</p>
             </article>
           </div>
         </div>
@@ -223,6 +221,7 @@
 
         <div class="grid cards-3">
           <figure class="card quote-card">
+            <div class="stars" aria-hidden="true">★★★★★</div>
             <blockquote>
               The kind of place you can breathe. The coffee is solid and the staff remembers your name.
             </blockquote>
@@ -230,6 +229,7 @@
           </figure>
 
           <figure class="card quote-card">
+            <div class="stars" aria-hidden="true">★★★★★</div>
             <blockquote>
               Best cold brew in town. Also their pastries disappear fast, so get here early.
             </blockquote>
@@ -237,6 +237,7 @@
           </figure>
 
           <figure class="card quote-card">
+            <div class="stars" aria-hidden="true">★★★★★</div>
             <blockquote>
               Quiet enough to work, friendly enough to stay. Feels like a neighborhood living room.
             </blockquote>
@@ -262,18 +263,15 @@
           <div class="card soft">
             <h3>Ember & Oak Cafe</h3>
             <p class="muted">
-              123 Oak Street, Your City, ST 00000<br />
+              123 Oak Street<br />
+              Sauk Centre, MN 56378<br />
               (555) 123-4567
             </p>
 
             <div class="hours">
-              <div class="hours-row" style="display: flex; justify-content: space-between;"><span>Mon</span><span>6:30 AM to 5:00 PM</span></div>
-              <div class="hours-row" style="display: flex; justify-content: space-between;"><span>Tue</span><span>6:30 AM to 5:00 PM</span></div>
-              <div class="hours-row" style="display: flex; justify-content: space-between;"><span>Wed</span><span>6:30 AM to 5:00 PM</span></div>
-              <div class="hours-row" style="display: flex; justify-content: space-between;"><span>Thu</span><span>6:30 AM to 6:00 PM</span></div>
-              <div class="hours-row" style="display: flex; justify-content: space-between;"><span>Fri</span><span>6:30 AM to 7:00 PM</span></div>
-              <div class="hours-row" style="display: flex; justify-content: space-between;"><span>Sat</span><span>7:00 AM to 7:00 PM</span></div>
-              <div class="hours-row" style="display: flex; justify-content: space-between;"><span>Sun</span><span>8:00 AM to 3:00 PM</span></div>
+              <div class="hours-row"><span class="muted">Mon-Wed</span><span>6:30 AM to 5:00 PM</span></div>
+              <div class="hours-row"><span class="muted">Thu-Sat</span><span>6:30 AM to 7:00 PM</span></div>
+              <div class="hours-row"><span class="muted">Sunday</span><span>8:00 AM to 3:00 PM</span></div>
             </div>
 
             <div class="card-actions">
@@ -284,13 +282,13 @@
 
           <div class="card media" style="height: 100%;">
             <iframe
-              title="Map to Ember and Oak Cafe"
+              title="Map to Ember and Oak Cafe in Sauk Centre"
               width="100%"
               height="100%"
               style="border:0;"
               loading="lazy"
               referrerpolicy="no-referrer-when-downgrade"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.1422937950147!2d-73.98731968482413!3d40.75889497932681!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDDCsDQ1JzMyLjAiTiA3M8KwNTknMDYuNCJX!5e0!3m2!1sen!2sus!4v1622580000000!5m2!1sen!2sus">
+              src="https://maps.google.com/maps?q=Sauk+Centre,+MN&t=&z=14&ie=UTF8&iwloc=&output=embed">
             </iframe>
           </div>
         </div>
@@ -305,7 +303,7 @@
           One email now and then. No spam. Just good stuff.
         </p>
 
-        <form class="newsletter" action="#" method="post">
+        <form class="newsletter" action="https://formspree.io/f/YOUR_FORM_ID_HERE" method="POST">
           <label class="sr-only" for="newsletter-email">Email</label>
           <input id="newsletter-email" name="email" type="email" placeholder="Your email" autocomplete="email" required />
           <button class="btn btn-primary" type="submit">Sign Up</button>
@@ -327,6 +325,11 @@
           <p class="muted">
             Crafted coffee, honest food, and a warm space for the neighborhood.
           </p>
+          
+          <div class="social-links">
+            <a href="#" aria-label="Instagram">Instagram</a>
+            <a href="#" aria-label="Facebook">Facebook</a>
+          </div>
         </div>
 
         <div class="footer-col">
@@ -343,7 +346,7 @@
         <div class="footer-col">
           <h4>Visit</h4>
           <ul class="footer-list">
-            <li>123 Oak Street, Your City</li>
+            <li>123 Oak Street, Sauk Centre, MN</li>
             <li><a href="tel:+15551234567">(555) 123-4567</a></li>
             <li><a href="mailto:hello@emberandoak.cafe">hello@emberandoak.cafe</a></li>
           </ul>
@@ -352,7 +355,8 @@
 
       <div class="footer-bottom">
         <p>© <span id="year">2026</span> Ember & Oak Cafe. All rights reserved.</p>
-        <a class="btn btn-ghost btn-sm" href="#main">Back to top</a>
+        
+        <p class="muted">Built by <a href="#" style="color: inherit; text-decoration: underline;">WebOps Studio</a></p>
       </div>
     </div>
   </footer>
