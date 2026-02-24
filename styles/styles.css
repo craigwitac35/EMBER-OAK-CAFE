@@ -137,19 +137,33 @@ p.muted { color: var(--color-text-muted); }
 .nav-toggle[aria-expanded="true"] .hamburger::before { transform: rotate(45deg) translate(4px, 4px); }
 .nav-toggle[aria-expanded="true"] .hamburger::after { transform: rotate(-45deg) translate(4px, -4px); }
 
-/* ENHANCEMENT: Option A - Brand Immersion Mobile Menu */
+/* ENHANCEMENT: Option A - Brand Immersion Mobile Menu (Updated to 3/4 screen) */
 @media (max-width: 899px) {
   .nav-links { 
-    display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; height: 100vh; 
-    background-color: var(--color-text-main); /* Deep espresso background */
-    flex-direction: column; justify-content: center; align-items: center; gap: 40px; margin: 0; padding: 0; z-index: 1000; 
+    display: none; 
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    right: 0; 
+    height: 75vh; 
+    background-color: var(--color-text-main); 
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center; 
+    gap: 40px; 
+    margin: 0; 
+    padding: 0; 
+    z-index: 1000; 
+    border-bottom-left-radius: 24px;
+    border-bottom-right-radius: 24px;
+    box-shadow: 0 24px 64px rgba(42, 38, 36, 0.4);
   }
   .nav-links.active { display: flex; }
   .nav-links a { 
-    font-family: var(--font-head); /* Playfair Serif */
-    font-size: 3rem; /* Massive, editorial sizing */
+    font-family: var(--font-head); 
+    font-size: 3rem; 
     font-weight: 600; 
-    color: var(--color-surface); /* Pure white text */
+    color: var(--color-surface); 
     opacity: 0.9;
   }
   .nav-links a:hover, .nav-links a.active { color: var(--color-accent); opacity: 1; }
