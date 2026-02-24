@@ -1,0 +1,1207 @@
+/*
+=========================================================================
+   EMBER & OAK CAFE — styles.css
+   Purpose:      Warm, neighborhood cafe site. Clean, human, scalable.
+   Architecture: Vanilla CSS — CSS Variables, Flexbox, CSS Grid.
+   Structure:
+      1.  Design Tokens (CSS Variables)
+      2.  Reset & Base
+      3.  Typography
+      4.  Layout & Grid Utilities
+      5.  Buttons
+      6.  Header & Navigation
+      7.  Mobile Menu (Floating Card)
+      8.  Desktop Navigation
+      9.  Hero System
+      10. Card System
+      11. Menu Page
+      12. Forms
+      13. CTA Strip & Newsletter
+      14. Footer
+      15. Utilities
+      16. Social Icons
+      17. Contact Page Utilities
+      18. Accessibility — Focus States
+      19. Page Fade-in Animation
+=========================================================================
+*/
+
+
+/* ============================================================
+   SECTION 1: DESIGN TOKENS
+   All site-wide values live here as CSS custom properties.
+   Change a value here and it updates everywhere automatically.
+   Never hardcode colors, fonts, or radii outside this block.
+============================================================ */
+:root {
+
+  /* ── Colors ──────────────────────────────────────────────
+     --color-bg:           Page background (off-white warm)
+     --color-surface:      Card/component background (white)
+     --color-surface-soft: Muted card background (warm cream)
+     --color-text-main:    Primary text + dark UI elements
+     --color-text-muted:   Secondary/label text
+     --color-accent:       Autumn orange — CTAs, highlights
+     --color-accent-hover: Darker orange for hover states
+     --color-border:       Subtle divider and input borders
+     --color-overlay:      Dark overlay on hero images
+  ──────────────────────────────────────────────────────── */
+  --color-bg:           #FCFAF8;
+  --color-surface:      #FFFFFF;
+  --color-surface-soft: #F4EFEA;
+  --color-text-main:    #2A2624;
+  --color-text-muted:   #5E5652;
+  --color-accent:       #D45D3B;
+  --color-accent-hover: #B84728;
+  --color-border:       #E8E3DF;
+  --color-overlay:      rgba(42, 38, 36, 0.45);
+
+  /* ── Typography ──────────────────────────────────────────
+     --font-head: Playfair Display — headings, mobile nav links
+     --font-body: Inter           — body copy, buttons
+     --font-mono: Roboto Mono     — labels, prices, metadata
+  ──────────────────────────────────────────────────────── */
+  --font-head: 'Playfair Display', serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'Roboto Mono', monospace;
+
+  /* ── Layout & Spacing ────────────────────────────────────
+     --max-width:       Maximum container width
+     --section-pad-y:   Top/bottom padding for .section blocks
+     --container-pad-x: Left/right padding inside .container
+  ──────────────────────────────────────────────────────── */
+  --max-width:       1140px;
+  --section-pad-y:   96px;
+  --container-pad-x: 24px;
+
+  /* ── UI Elements ─────────────────────────────────────────
+     --radius-sm:    Small corner radius (inputs, badges)
+     --radius-md:    Medium corner radius (cards)
+     --radius-pill:  Full pill radius (buttons, tags)
+     --shadow-soft:  Subtle card elevation shadow
+     --shadow-hover: Lifted card hover shadow
+     --transition:   Global transition timing
+  ──────────────────────────────────────────────────────── */
+  --radius-sm:    8px;
+  --radius-md:    16px;
+  --radius-pill:  100px;
+  --shadow-soft:  0 12px 36px rgba(42, 38, 36, 0.06);
+  --shadow-hover: 0 16px 48px rgba(42, 38, 36, 0.12);
+  --transition:   0.3s ease;
+}
+
+
+/* ============================================================
+   SECTION 2: RESET & BASE
+   Minimal reset to normalize browser defaults.
+   Sets global box model, font smoothing, and base element styles.
+============================================================ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-bg);
+  color: var(--color-text-main);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Default link — accent orange, no underline */
+a {
+  color: var(--color-accent);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+a:hover { color: var(--color-accent-hover); }
+
+/* Remove default list bullets globally */
+ul { list-style: none; }
+
+/* Form elements inherit body font */
+button, input, textarea, select { font: inherit; }
+
+/* Screen-reader only — visually hidden but accessible */
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+/* Skip link — hidden offscreen, revealed on keyboard focus */
+.skip-link {
+  position: absolute;
+  top: -40px; left: 0;
+  background: var(--color-accent);
+  color: white;
+  padding: 8px 16px;
+  z-index: 9999;
+}
+.skip-link:focus { top: 0; }
+
+
+/* ============================================================
+   SECTION 3: TYPOGRAPHY
+   Headings use clamp() for fluid scaling between viewports.
+   h3 gets a mobile breakpoint to prevent awkward card title wrapping.
+   .section-label is the [ LABEL ] mono tag used throughout the site.
+============================================================ */
+h1, h2, h3, h4, .font-head {
+  font-family: var(--font-head);
+  color: var(--color-text-main);
+  line-height: 1.15;
+  font-weight: 700;
+}
+
+/* Fluid type scale */
+h1 { font-size: clamp(2.5rem, 6vw, 4.5rem); margin-bottom: 24px; }
+h2 { font-size: clamp(2rem, 4vw, 3rem);     margin-bottom: 16px; }
+h3 { font-size: 1.5rem;                      margin-bottom: 12px; }
+h4 { font-size: 1.25rem; }
+
+/* h3 mobile scaling — tightens long card titles on small screens */
+@media (max-width: 480px) {
+  h3 { font-size: 1.25rem; }
+}
+
+p { margin-bottom: 16px; }
+p.muted { color: var(--color-text-muted); }
+
+/* [ SECTION LABEL ] — Roboto Mono, accent orange, auto brackets */
+.section-label {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: 16px;
+}
+.section-label::before { content: '[ '; }
+.section-label::after  { content: ' ]'; }
+
+/* Section label on dark backgrounds (cta-strip) — lower opacity white */
+.cta-strip .section-label {
+  color: rgba(255, 255, 255, 0.65);
+}
+
+
+/* ============================================================
+   SECTION 4: LAYOUT & GRID UTILITIES
+   Reusable layout classes used across all pages.
+============================================================ */
+
+/* Centered max-width wrapper */
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--container-pad-x);
+}
+
+/* Standard section vertical rhythm */
+.section { padding: var(--section-pad-y) 0; }
+
+/* Gradient divider line between sections */
+.section-divider {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--color-border), transparent);
+}
+
+/* Section header — label+heading left, optional CTA right */
+.section-head {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 48px;
+}
+@media (min-width: 768px) {
+  .section-head {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+}
+
+/* Base grid */
+.grid { display: grid; gap: 32px; }
+
+/* Responsive column grids — mobile first */
+.cards-2 { grid-template-columns: 1fr; }
+.cards-3 { grid-template-columns: 1fr; }
+
+@media (min-width: 768px) {
+  .cards-2 { grid-template-columns: repeat(2, 1fr); }
+  .cards-3 { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 1024px) {
+  .cards-3 { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* Two-column 50/50 layout */
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+  align-items: center;
+}
+@media (min-width: 900px) {
+  .two-col {
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+  }
+}
+
+/* Modifier: align both columns to top instead of center */
+.two-col-top { align-items: start; }
+
+.center-row {
+  display: flex;
+  justify-content: center;
+  margin-top: 48px;
+}
+
+.text-center { text-align: center; }
+
+
+/* ============================================================
+   SECTION 5: BUTTONS
+   .btn-primary: Filled accent orange
+   .btn-ghost:   Transparent with border outline
+   .btn-sm:      Smaller padding/font size
+   .btn-full:    Full width (contact form submit)
+   All buttons lift on hover with translateY(-2px).
+============================================================ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 14px 28px;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition: all var(--transition);
+  border: 2px solid transparent;
+  line-height: 1;
+}
+
+.btn-primary { background-color: var(--color-accent); color: #fff; }
+.btn-primary:hover {
+  background-color: var(--color-accent-hover);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(212, 93, 59, 0.25);
+}
+
+.btn-ghost {
+  background-color: transparent;
+  color: var(--color-text-main);
+  border-color: var(--color-border);
+}
+.btn-ghost:hover {
+  border-color: var(--color-text-main);
+  transform: translateY(-2px);
+}
+
+.btn-sm   { padding: 10px 20px; font-size: 0.875rem; }
+.btn-full { width: 100%; }
+
+
+/* ============================================================
+   SECTION 6: HEADER & NAVIGATION
+   Two visual states:
+     Default:  position absolute, transparent (sits over hero)
+     .scrolled: position fixed, solid background, dark text
+   JS (scripts.js) adds/removes .scrolled at window.scrollY > 50.
+============================================================ */
+.site-header {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 24px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  transition: background-color 0.3s ease, padding 0.3s ease, box-shadow 0.3s ease;
+}
+
+.site-header.scrolled {
+  position: fixed;
+  background-color: var(--color-bg);
+  border-bottom-color: var(--color-border);
+  padding: 16px 0;
+  box-shadow: var(--shadow-soft);
+}
+
+.header-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Brand — stacked name + sub-label */
+.brand-link {
+  display: flex;
+  flex-direction: column;
+  color: var(--color-surface);
+}
+.site-header.scrolled .brand-link { color: var(--color-text-main); }
+
+.brand-name {
+  font-family: var(--font-head);
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1;
+}
+.brand-amp {
+  color: var(--color-accent);
+  font-family: var(--font-body);
+}
+.brand-sub {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+
+.main-nav { display: flex; align-items: center; }
+
+/* Desktop CTA button — hidden on mobile */
+.nav-cta { display: none; }
+
+/* ── Hamburger Button ──────────────────────────────────────
+   Three bars built from one element + two pseudo-elements.
+   Width reduced from 24px to 19px (~20% smaller).
+   Animates to X when aria-expanded="true".
+────────────────────────────────────────────────────────── */
+.nav-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  z-index: 1001;
+}
+
+/* Middle bar */
+.hamburger {
+  display: block;
+  width: 19px;         /* Reduced from 24px */
+  height: 2px;
+  background: var(--color-surface);
+  position: relative;
+  transition: background var(--transition);
+}
+.site-header.scrolled .hamburger { background: var(--color-text-main); }
+
+/* Top and bottom bars */
+.hamburger::before,
+.hamburger::after {
+  content: '';
+  position: absolute;
+  width: 19px;         /* Matches middle bar */
+  height: 2px;
+  background: var(--color-surface);
+  transition: transform var(--transition);
+}
+.site-header.scrolled .hamburger::before,
+.site-header.scrolled .hamburger::after { background: var(--color-text-main); }
+
+/* Tighter spacing to match smaller icon */
+.hamburger::before { top: -5px; left: 0; }
+.hamburger::after  { top:  5px; left: 0; }
+
+/* X animation — middle bar disappears, top/bottom rotate */
+.nav-toggle[aria-expanded="true"] .hamburger { background: transparent !important; }
+.nav-toggle[aria-expanded="true"] .hamburger::before { transform: rotate(45deg) translate(4px, 4px); }
+.nav-toggle[aria-expanded="true"] .hamburger::after  { transform: rotate(-45deg) translate(4px, -4px); }
+
+
+/* ============================================================
+   SECTION 7: MOBILE MENU (Floating Card)
+   Applies at max-width: 899px only.
+
+   Key design decisions:
+   - top: 84px — drops from below the header, not from screen top
+   - left/right: 20px inset — page visible on both sides
+   - No border-top — visually connects to the header above
+   - max-height animation (not display toggle) — enables CSS transition
+   - .active class toggled by scripts.js
+============================================================ */
+@media (max-width: 899px) {
+
+  .nav-links {
+    display: block;
+    position: fixed;
+    top: 84px;                               /* Below header */
+    left: 20px;
+    right: 20px;
+    width: calc(100% - 40px);
+    max-height: 0;                           /* Collapsed state */
+    overflow: hidden;
+    background-color: var(--color-text-main);
+    border: 3px solid var(--color-accent);
+    border-top: none;                        /* Connects to header visually */
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    box-shadow: 0 32px 80px rgba(42, 38, 36, 0.5);
+    z-index: 1000;
+    opacity: 0;
+    transition: max-height 0.4s ease, opacity 0.3s ease, padding 0.3s ease;
+    padding: 0;
+  }
+
+  /* Open state — JS adds .active class */
+  .nav-links.active {
+    max-height: 80vh;
+    opacity: 1;
+    padding: 40px 0 48px;
+  }
+
+  .nav-links li {
+    display: flex;
+    justify-content: center;
+  }
+
+  /* Large Playfair Display links inside dark menu */
+  .nav-links a {
+    font-family: var(--font-head);
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: var(--color-surface);
+    opacity: 0.9;
+    padding: 10px 0;
+    display: block;
+    text-align: center;
+    transition: color 0.2s ease, opacity 0.2s ease;
+  }
+  .nav-links a:hover,
+  .nav-links a.active {
+    color: var(--color-accent);
+    opacity: 1;
+  }
+
+  /* X bars stay white against dark menu */
+  .nav-toggle[aria-expanded="true"] .hamburger::before,
+  .nav-toggle[aria-expanded="true"] .hamburger::after {
+    background: var(--color-surface) !important;
+  }
+}
+
+
+/* ============================================================
+   SECTION 8: DESKTOP NAVIGATION
+   Applies at min-width: 900px.
+============================================================ */
+@media (min-width: 900px) {
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    margin-right: 32px;
+  }
+  .nav-cta    { display: inline-flex; }
+  .nav-toggle { display: none; }
+
+  /* Links over hero (transparent header) */
+  .nav-links a {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.8);
+  }
+  .nav-links a:hover,
+  .nav-links a.active { color: var(--color-surface); }
+
+  /* Links after scroll (solid header) */
+  .site-header.scrolled .nav-links a { color: var(--color-text-muted); }
+  .site-header.scrolled .nav-links a:hover,
+  .site-header.scrolled .nav-links a.active { color: var(--color-text-main); }
+}
+
+
+/* ============================================================
+   SECTION 9: HERO SYSTEM
+   Full-viewport hero used on all pages.
+   .page-hero:           Base — min-height, flex center, white text
+   .hero-bg:             Absolute image container behind content
+   .hero-bg-overlay:     Dark tint over photo for text readability
+   .page-hero__inner:    Content wrapper
+   .hero-ctas:           Button row
+   .hero-proof-strip:    Frosted glass pill row
+   .hero-home-adjusted:  Homepage variant — different image focus
+============================================================ */
+.page-hero {
+  position: relative;
+  min-height: 85vh;
+  display: flex;
+  align-items: center;
+  color: var(--color-surface);
+  padding-top: 80px;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+}
+.hero-bg-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.hero-bg-overlay {
+  position: absolute;
+  inset: 0;
+  background: var(--color-overlay);
+}
+
+.page-hero__inner {
+  position: relative;
+  z-index: 1;
+  max-width: 800px;
+}
+
+/* Eyebrow: accent line + mono label */
+.page-hero__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+.page-hero__eyebrow-line {
+  width: 40px;
+  height: 2px;
+  background: var(--color-accent);
+}
+
+.page-hero__title { color: var(--color-surface); }
+.page-hero__title span {
+  color: var(--color-surface-soft);
+  font-style: italic;
+  font-weight: 600;
+}
+
+.page-hero__sub {
+  font-size: 1.25rem;
+  font-weight: 300;
+  max-width: 560px;
+  margin-bottom: 40px;
+  opacity: 0.9;
+}
+
+/* Mobile hero typography tightening */
+@media (max-width: 480px) {
+  .page-hero__title { margin-bottom: 16px; }
+  .page-hero__sub   { font-size: 1rem; margin-bottom: 32px; }
+}
+
+/* CTA row */
+.hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; }
+
+/* Ghost button override for dark hero */
+.page-hero .btn-ghost {
+  color: var(--color-surface);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+.page-hero .btn-ghost:hover {
+  background: var(--color-surface);
+  color: var(--color-text-main);
+}
+
+/* Proof strip — frosted pills below CTAs */
+.hero-proof-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px 24px;
+  margin-top: 64px;
+  padding-top: 32px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.proof-pill {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 8px 16px;
+  border-radius: var(--radius-pill);
+  backdrop-filter: blur(4px);
+}
+
+.proof-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-accent);
+}
+
+/* Homepage variant — shifts image focal point */
+.hero-home-adjusted .hero-bg-img      { object-position: center 20%; }
+.hero-home-adjusted .page-hero__inner { padding-top: 80px; }
+
+
+/* ============================================================
+   SECTION 10: CARD SYSTEM
+   .card:        Base — border-radius + overflow hidden
+   .card.soft:   Cream background with padding (mobile: reduced)
+   .card.media:  Full-bleed image card
+   .item-card:   White bordered card — image top, content below
+   .event-card:  Horizontal layout — image left, content right
+   .quote-card:  Testimonial — decorative large quote mark
+   .team-card:   Portrait image + body content
+   .value-card:  Padded text-only card (about page)
+============================================================ */
+.card {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+/* Soft card — reduced padding on mobile so content breathes */
+.card.soft { background: var(--color-surface-soft); padding: 48px; }
+
+@media (max-width: 600px) {
+  .card.soft { padding: 28px; }
+}
+
+/* Media card */
+.card.media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  min-height: 400px;
+  border-radius: var(--radius-md);
+}
+
+/* ── Item Card ── */
+.item-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  transition: box-shadow var(--transition), transform var(--transition);
+}
+.item-card:hover {
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-4px);
+}
+.item-card img {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  border-bottom: 1px solid var(--color-border);
+}
+.card-body    { padding: 32px; }
+.card-actions { margin-top: 24px; }
+
+/* ── Event Card ── */
+.event-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+.event-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+}
+.event-card-img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+}
+.event-card-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.event-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+}
+.event-tag {
+  background: var(--color-surface-soft);
+  color: var(--color-accent);
+  padding: 4px 12px;
+  border-radius: var(--radius-pill);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/* Tablet+: horizontal layout */
+@media (min-width: 600px) {
+  .event-card {
+    flex-direction: row;
+    padding: 32px;
+    align-items: flex-start;
+  }
+  .event-card-img {
+    width: 180px;
+    height: 180px;
+    flex-shrink: 0;
+  }
+}
+
+/* ── Quote Card ── */
+.quote-card {
+  background: var(--color-surface-soft);
+  border: none;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 1;
+}
+/* Large decorative quotation mark */
+.quote-card::before {
+  content: '\201C';
+  font-family: var(--font-head);
+  position: absolute;
+  top: -10px;
+  left: 20px;
+  font-size: 6rem;
+  color: var(--color-accent);
+  opacity: 0.15;
+  z-index: -1;
+  line-height: 1;
+}
+.quote-card blockquote {
+  font-size: 1.1rem;
+  font-style: italic;
+  margin-bottom: 24px;
+  flex: 1;
+}
+.quote-card figcaption {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--color-accent);
+  font-weight: 500;
+}
+.quote-card figcaption::before { content: '— '; }
+
+/* ── Team & Value Cards ── */
+.team-card,
+.value-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+.team-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
+.team-card img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-bottom: 1px solid var(--color-border);
+}
+.value-card { padding: 40px; }
+
+/* ── Stars & Badge ── */
+.stars {
+  color: var(--color-accent);
+  font-size: 1.25rem;
+  letter-spacing: 2px;
+  margin-bottom: 16px;
+}
+.badge {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  background: var(--color-accent);
+  color: #fff;
+  padding: 2px 8px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  vertical-align: middle;
+  margin-left: 8px;
+  letter-spacing: 0.05em;
+}
+
+
+/* ============================================================
+   SECTION 11: MENU PAGE
+   .menu-nav-section: Sticky filter bar
+   .filter-btn:       Filter pill — active state has orange underline
+   .menu-category:    Scroll offset for anchor links
+   .menu-item:        Individual item row
+============================================================ */
+/* Sticky filter bar — sits below the fixed header */
+.menu-nav-section {
+  background: var(--color-surface-soft);
+  padding: 24px 0;
+  border-bottom: 1px solid var(--color-border);
+  position: sticky;
+  top: 68px; /* Tuned to sit flush below scrolled header */
+  z-index: 90;
+}
+
+.menu-filters {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+}
+.menu-filters::-webkit-scrollbar { height: 4px; }
+.menu-filters::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 4px;
+}
+
+.filter-btn {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-main);
+  padding: 8px 16px;
+  border-radius: var(--radius-pill);
+  font-size: 0.85rem;
+  font-weight: 500;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+.filter-btn:hover {
+  background: var(--color-text-main);
+  color: var(--color-surface);
+  border-color: var(--color-text-main);
+}
+.filter-btn.active {
+  background: var(--color-text-main);
+  color: var(--color-surface);
+  border-color: var(--color-text-main);
+  box-shadow: 0 3px 0 0 var(--color-accent); /* Orange underline indicator */
+}
+
+/* Scroll offset accounts for sticky header + filter bar combined */
+.menu-category {
+  scroll-margin-top: 150px;
+  margin-bottom: 64px;
+}
+
+.menu-item {
+  display: flex;
+  flex-direction: column;
+  padding: 24px 0;
+  border-bottom: 1px dashed var(--color-border);
+}
+.menu-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 8px;
+}
+.menu-item h3 { margin-bottom: 0; font-size: 1.25rem; }
+.menu-price {
+  font-family: var(--font-mono);
+  font-size: 1.1rem;
+  color: var(--color-text-main);
+}
+
+
+/* ============================================================
+   SECTION 12: FORMS
+   Used on contact.html.
+   .form-group:  Wrapper with bottom margin
+   .form-label:  Mono uppercase label
+   .form-control: Input, textarea, select base + focus ring
+============================================================ */
+.form-group { margin-bottom: 24px; }
+
+.form-label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  color: var(--color-text-muted);
+}
+
+.form-control {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface);
+  color: var(--color-text-main);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  transition: border-color var(--transition), box-shadow var(--transition);
+  appearance: none;
+}
+.form-control:focus {
+  outline: none;
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(212, 93, 59, 0.15);
+}
+
+textarea.form-control { resize: vertical; min-height: 120px; }
+
+/* Custom chevron arrow replaces browser default */
+select.form-control {
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%232A2624' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  padding-right: 40px;
+}
+
+
+/* ============================================================
+   SECTION 13: CTA STRIP & NEWSLETTER
+   Dark full-width section with 4px accent top border.
+   Used at the bottom of most pages.
+============================================================ */
+.cta-strip {
+  background: var(--color-text-main);
+  color: var(--color-surface);
+  padding: 80px 0;
+  text-align: center;
+  border-top: 4px solid var(--color-accent);
+}
+.cta-strip h2   { color: var(--color-surface); }
+.cta-strip .muted {
+  color: rgba(255, 255, 255, 0.7);
+  max-width: 500px;
+  margin: 0 auto 32px;
+}
+.cta-strip .btn-ghost {
+  color: var(--color-surface);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+.cta-strip .btn-ghost:hover {
+  background: var(--color-surface);
+  color: var(--color-text-main);
+}
+
+/* Newsletter email + submit row */
+.newsletter {
+  display: flex;
+  max-width: 400px;
+  margin: 0 auto;
+  gap: 8px;
+}
+.newsletter input {
+  flex: 1;
+  padding: 14px 20px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  border-radius: var(--radius-pill);
+}
+.newsletter input::placeholder { color: rgba(255, 255, 255, 0.5); }
+.newsletter input:focus {
+  outline: none;
+  border-color: var(--color-accent);
+}
+
+
+/* ============================================================
+   SECTION 14: FOOTER
+   Three-column grid: Brand (2fr) | Pages (1fr) | Visit (1fr)
+   Stacks on mobile, side-by-side at 768px+.
+   Consistent structure across all pages — do not change per page.
+============================================================ */
+.site-footer {
+  background: var(--color-surface);
+  padding: 80px 0 32px;
+  border-top: 1px solid var(--color-border);
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 48px;
+  margin-bottom: 64px;
+}
+@media (min-width: 768px) {
+  .footer-grid { grid-template-columns: 2fr 1fr 1fr; }
+}
+
+.footer-brand .brand-link { color: var(--color-text-main); margin-bottom: 16px; }
+.footer-brand .muted      { max-width: 300px; }
+.footer-col h4  { font-size: 1rem; margin-bottom: 24px; }
+.footer-list,
+.footer-col ul  { display: flex; flex-direction: column; gap: 12px; }
+.footer-col a,
+.footer-list li { color: var(--color-text-muted); font-size: 0.95rem; }
+.footer-col a:hover { color: var(--color-accent); }
+
+/* Bottom bar */
+.footer-bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+  padding-top: 32px;
+  border-top: 1px solid var(--color-border);
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+}
+@media (min-width: 768px) {
+  .footer-bottom {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+.footer-bottom a:hover {
+  color: var(--color-accent);
+  text-decoration: underline;
+}
+
+
+/* ============================================================
+   SECTION 15: UTILITIES
+   Small helpers that don't belong to a specific component.
+============================================================ */
+
+/* Hours table rows — used in location cards */
+.hours-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 4px 0;
+}
+
+/* Back to top floating button */
+.back-to-top {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  width: 48px;
+  height: 48px;
+  background: var(--color-text-main);
+  color: var(--color-surface);
+  border: none;
+  border-radius: 50%;
+  font-size: 1.25rem;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transition: all var(--transition);
+  z-index: 90;
+  box-shadow: var(--shadow-soft);
+}
+.back-to-top.visible { opacity: 1; visibility: visible; }
+.back-to-top:hover   { background: var(--color-accent); transform: translateY(-4px); }
+
+/* Map embed height container */
+.map-embed { height: 300px; }
+
+
+/* ============================================================
+   SECTION 16: SOCIAL ICONS
+   Inline SVG icons in the footer brand column.
+   No external icon library — fully self-contained.
+   currentColor inheritance means hover color works automatically.
+============================================================ */
+.social-links {
+  display: flex;
+  gap: 16px;
+  margin-top: 20px;
+}
+.social-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-muted);
+  transition: color 0.2s ease, transform 0.2s ease;
+  text-decoration: none;
+}
+.social-icon:hover {
+  color: var(--color-accent);
+  transform: translateY(-2px);
+}
+.social-icon svg { display: block; }
+
+
+/* ============================================================
+   SECTION 17: CONTACT PAGE UTILITIES
+   These classes replace inline styles on contact.html.
+   Keeping styles here makes future edits single-location.
+============================================================ */
+.contact-info-card { padding: 40px; margin-bottom: 32px; }
+
+
+/* ============================================================
+   SECTION 18: ACCESSIBILITY — FOCUS STATES
+   Visible focus rings for keyboard navigation.
+   :focus-visible only shows rings for keyboard users —
+   mouse users won't see them (modern browser behavior).
+   Consistent orange glow matches site accent color throughout.
+============================================================ */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Pill-shaped buttons get matching pill radius on focus ring */
+.btn:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: var(--radius-pill);
+}
+
+/* Hamburger button — slightly larger offset for hit area */
+.nav-toggle:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 4px;
+  border-radius: var(--radius-sm);
+}
+
+
+/* ============================================================
+   SECTION 19: PAGE FADE-IN ANIMATION
+   Subtle opacity + slight upward movement on every page load.
+   Pure CSS — no JavaScript required.
+   0.4s duration: fast enough to feel snappy, slow enough to notice.
+   Makes navigation feel polished and intentional.
+============================================================ */
+@keyframes pageFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+body {
+  animation: pageFadeIn 0.4s ease forwards;
+}
