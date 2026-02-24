@@ -1,174 +1,239 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Menu | Ember & Oak Cafe</title>
-  <meta name="description" content="View the Ember & Oak Cafe menu. Small batch roasted coffee, espresso drinks, loose leaf teas, and scratch-made seasonal pastries." />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menu — Ember & Oak Cafe</title>
   
-  <link rel="icon" href="images/logo-favicon.png" type="image/png" />
-  <link rel="stylesheet" href="styles/styles.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500;600&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
 
-  <header id="site-header" class="site-header">
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <header class="site-header scrolled">
     <div class="container header-inner">
-      <div class="brand">
-        <a class="brand-link" href="index.html" aria-label="Ember and Oak Cafe home">
-          <span class="brand-name">Ember <span class="brand-amp">&</span> Oak</span>
-          <span class="brand-sub">Cafe</span>
-        </a>
-      </div>
-      <nav class="main-nav" aria-label="Primary navigation">
-        <button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="primary-nav">
-          <span class="hamburger" aria-hidden="true"></span>
+      <a href="index.html" class="brand-link">
+        <span class="brand-name">Ember <span class="brand-amp">&</span> Oak</span>
+        <span class="brand-sub">Neighborhood Cafe</span>
+      </a>
+
+      <nav class="main-nav">
+        <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Toggle menu">
+          <span class="hamburger"></span>
         </button>
-        <ul class="nav-links" id="primary-nav">
+
+        <ul id="nav-menu" class="nav-links">
           <li><a href="index.html">Home</a></li>
-          <li><a class="active" href="menu.html">Menu</a></li>
-          <li><a href="events.html">Events</a></li>
+          <li><a href="menu.html" class="active">Menu</a></li>
           <li><a href="catering.html">Catering</a></li>
-          <li><a href="about.html">About</a></li>
+          <li><a href="events.html">Events</a></li>
           <li><a href="contact.html">Contact</a></li>
         </ul>
-        <a class="btn btn-primary btn-sm nav-cta" href="menu.html">View Menu</a>
+        
+        <a href="menu.html" class="btn btn-primary nav-cta btn-sm">Order Ahead</a>
       </nav>
     </div>
   </header>
 
-  <main id="main">
-    <section class="page-hero hero-menu">
-      <div class="hero-bg" aria-hidden="true">
-        <img class="hero-bg-img" src="images/menu-hero.jpg" alt="" loading="eager" />
-        <div class="hero-bg-overlay"></div>
-      </div>
-      <div class="container page-hero__inner">
-        <p class="page-hero__eyebrow"><span class="page-hero__eyebrow-line"></span>Our Offerings</p>
-        <h1 class="page-hero__title">Crafted Daily.<br /><span>Poured Slowly.</span></h1>
-        <p class="page-hero__sub">We source beans thoughtfully, roast in small batches, and bake everything in-house every morning.</p>
+  <main id="main-content" style="padding-top: 100px;">
+    
+    <section class="section" style="padding-bottom: 32px;">
+      <div class="container text-center">
+        <span class="section-label">Our Offerings</span>
+        <h1 style="margin-bottom: 16px;">The Menu</h1>
+        <p class="muted" style="max-width: 600px; margin: 0 auto;">Crafted with care, sourced responsibly. From our signature espresso pulls to fresh local pastries.</p>
       </div>
     </section>
 
-    <section class="menu-nav-section">
+    <div class="menu-nav-section">
       <div class="container">
         <div class="menu-filters">
-          <button class="filter-btn active" data-filter="all">All Items</button>
-          <button class="filter-btn" data-filter="espresso">Espresso & Coffee</button>
-          <button class="filter-btn" data-filter="tea">Tea & More</button>
-          <button class="filter-btn" data-filter="pastries">Scratch Pastries</button>
+          <a href="#coffee" class="filter-btn active">Coffee & Espresso</a>
+          <a href="#tea" class="filter-btn">Tea & More</a>
+          <a href="#food" class="filter-btn">Food & Pastries</a>
         </div>
       </div>
-    </section>
+    </div>
 
-    <section class="section menu-section">
+    <section class="section">
       <div class="container">
-        <div class="menu-category" id="espresso">
+
+        <div class="menu-category" id="coffee">
           <div class="section-head">
-            <h2>Espresso & Coffee</h2>
-            <p class="muted">Served hot or iced. Substitute oat or almond milk for $0.75.</p>
+            <h2>Coffee & Espresso</h2>
+            <p class="muted">Roasted locally, brewed fresh daily.</p>
           </div>
-          <div class="grid menu-grid">
-            <article class="menu-item highlight">
-              <div class="menu-item-header">
-                <h3>Honey Oat Latte <span class="badge">Signature</span></h3>
-                <span class="menu-price">$5.25</span>
-              </div>
-              <p class="muted">Smooth espresso blended with steamed oat milk and a touch of local honey.</p>
-            </article>
-            <article class="menu-item highlight">
-              <div class="menu-item-header">
-                <h3>Ember Mocha</h3>
-                <span class="menu-price">$5.75</span>
-              </div>
-              <p class="muted">Rich espresso with dark chocolate and a hint of cinnamon.</p>
-            </article>
+
+          <div class="grid cards-2">
             <article class="menu-item">
               <div class="menu-item-header">
-                <h3>Cold Brew</h3>
-                <span class="menu-price">$4.50</span>
+                <h3>Drip Coffee</h3>
+                <span class="menu-price">$3.50</span>
               </div>
-              <p class="muted">Slow steeped for 18 hours for a smooth, low acid finish.</p>
+              <p class="muted">Our rotating single-origin daily brew.</p>
+            </article>
+
+            <article class="menu-item">
+              <div class="menu-item-header">
+                <h3>Pour Over</h3>
+                <span class="menu-price">$5.00</span>
+              </div>
+              <p class="muted">Hand-poured to order. Ask about today's beans.</p>
+            </article>
+
+            <article class="menu-item highlight">
+              <div class="menu-item-header">
+                <h3>Oak Smoked Latte <span class="badge">Signature</span></h3>
+                <span class="menu-price">$5.75</span>
+              </div>
+              <p class="muted">Espresso, steamed milk, and our house-made smoked vanilla syrup.</p>
+            </article>
+
+            <article class="menu-item">
+              <div class="menu-item-header">
+                <h3>Americano</h3>
+                <span class="menu-price">$3.75</span>
+              </div>
+              <p class="muted">Double shot of espresso pulled over hot water.</p>
             </article>
           </div>
         </div>
 
         <div class="section-divider"></div>
 
-        <div class="menu-category" id="pastries">
+        <div class="menu-category" id="tea">
           <div class="section-head">
-            <h2>Scratch Pastries</h2>
-            <p class="muted">Baked fresh daily in-house.</p>
+            <h2>Tea & More</h2>
+            <p class="muted">Loose leaf, slow steeped, and served with intention.</p>
           </div>
-          <div class="grid menu-grid">
+
+          <div class="grid cards-2">
             <article class="menu-item highlight">
               <div class="menu-item-header">
-                <h3>Cinnamon Roll <span class="badge">Popular</span></h3>
+                <h3>Lavender London Fog <span class="badge">Seasonal</span></h3>
+                <span class="menu-price">$5.00</span>
+              </div>
+              <p class="muted">Earl Grey tea with steamed milk, vanilla, and a hint of lavender.</p>
+            </article>
+
+            <article class="menu-item">
+              <div class="menu-item-header">
+                <h3>Chamomile Citrus</h3>
                 <span class="menu-price">$4.25</span>
               </div>
-              <p class="muted">Soft and baked fresh each morning with a light vanilla glaze.</p>
+              <p class="muted">Calming chamomile with fresh orange peel and local honey.</p>
             </article>
+
+            <article class="menu-item">
+              <div class="menu-item-header">
+                <h3>Jasmine Green Tea</h3>
+                <span class="menu-price">$4.00</span>
+              </div>
+              <p class="muted">Light and floral with delicate jasmine aroma.</p>
+            </article>
+
+            <article class="menu-item">
+              <div class="menu-item-header">
+                <h3>Spiced Chai Latte</h3>
+                <span class="menu-price">$5.25</span>
+              </div>
+              <p class="muted">House blend of black tea and warming spices with steamed milk.</p>
+            </article>
+          </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="menu-category" id="food">
+          <div class="section-head">
+            <h2>Food & Pastries</h2>
+            <p class="muted">Baked fresh every morning by our local bakery partners.</p>
+          </div>
+
+          <div class="grid cards-2">
             <article class="menu-item">
               <div class="menu-item-header">
                 <h3>Butter Croissant</h3>
-                <span class="menu-price">$3.75</span>
+                <span class="menu-price">$4.25</span>
               </div>
-              <p class="muted">Flaky, golden, and lightly crisp on the outside.</p>
+              <p class="muted">Flaky, golden, and baked fresh daily.</p>
             </article>
-            <article class="menu-item">
+
+            <article class="menu-item highlight">
               <div class="menu-item-header">
-                <h3>Blueberry Muffin</h3>
-                <span class="menu-price">$3.95</span>
+                <h3>Avocado Toast <span class="badge">Popular</span></h3>
+                <span class="menu-price">$9.50</span>
               </div>
-              <p class="muted">Moist and packed with whole blueberries.</p>
+              <p class="muted">Thick-cut sourdough, smashed avocado, chili flakes, and microgreens.</p>
             </article>
           </div>
         </div>
+
       </div>
     </section>
 
-    <section class="cta-strip">
-      <div class="container">
-        <span class="section-label">Stop By</span>
-        <h2>There is always a seat waiting</h2>
-        <div class="hero-ctas" style="justify-content: center;">
-          <a class="btn btn-primary" href="contact.html#location">Get Directions</a>
-        </div>
-      </div>
-    </section>
   </main>
 
   <footer class="site-footer">
     <div class="container">
       <div class="footer-grid">
+        
         <div class="footer-brand">
-          <div class="brand">
-            <a class="brand-link" href="index.html">
-              <span class="brand-name">Ember <span class="brand-amp">&</span> Oak</span>
+          <a href="index.html" class="brand-link">
+            <span class="brand-name">Ember <span class="brand-amp">&</span> Oak</span>
+          </a>
+          <p class="muted">Fueling the neighborhood with honest coffee, warm spaces, and genuine connection.</p>
+          
+          <div class="social-links">
+            <a href="#" aria-label="Follow us on Instagram" class="social-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                <circle cx="12" cy="12" r="4"/>
+                <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+              </svg>
+            </a>
+            <a href="#" aria-label="Follow us on Facebook" class="social-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+              </svg>
             </a>
           </div>
         </div>
+
         <div class="footer-col">
-          <h4>Pages</h4>
-          <ul>
-            <li><a href="menu.html">Menu</a></li>
-            <li><a href="events.html">Events</a></li>
+          <h4>Explore</h4>
+          <ul class="footer-list">
+            <li><a href="menu.html">Our Menu</a></li>
             <li><a href="catering.html">Catering</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="contact.html">Contact</a></li>
+            <li><a href="events.html">Private Events</a></li>
           </ul>
         </div>
+
+        <div class="footer-col">
+          <h4>Connect</h4>
+          <ul class="footer-list">
+            <li><a href="contact.html">Contact Us</a></li>
+            <li>123 Market Street, MN</li>
+            <li>(555) 123-4567</li>
+          </ul>
+        </div>
+
       </div>
+
       <div class="footer-bottom">
-        <p>© <span id="year">2026</span> Ember & Oak Cafe.</p>
-        <a class="btn btn-ghost btn-sm" href="#main">Back to top</a>
+        <span>© 2026 Ember & Oak Cafe. All rights reserved.</span>
+        <span>Site by <a href="#">WebOps Studio</a></span>
       </div>
     </div>
   </footer>
-  <script src="js/scripts.js"></script>
+
+  <button class="back-to-top" aria-label="Back to top">↑</button>
+
+  <script src="scripts.js"></script>
 </body>
 </html>
