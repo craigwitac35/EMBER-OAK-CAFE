@@ -1202,6 +1202,15 @@ select.form-control {
 }
 
 
+/* ── Featured item cards — consistent image height ── */
+.item-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
 /* ── Homepage: single featured event card ── */
 .event-feature {
   max-width: 680px;
