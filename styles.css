@@ -1202,8 +1202,24 @@ select.form-control {
 }
 
 
+/* ── Homepage: single featured event card ── */
+.event-feature {
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+/* ── Events page: single-column centered stack ── */
+.events-list {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+
 /* ============================================================
-   SECTION 18 (was 17): CONTACT PAGE UTILITIES
+   SECTION 18: CONTACT PAGE UTILITIES
    These classes replace inline styles on contact.html.
    Keeping styles here makes future edits single-location.
 ============================================================ */
