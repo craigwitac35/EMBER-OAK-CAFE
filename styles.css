@@ -1203,6 +1203,9 @@ select.form-control {
 
 
 /* ── Featured item cards — consistent image height ── */
+.item-card {
+  overflow: hidden;
+}
 .item-card img {
   width: 100%;
   height: 220px;
